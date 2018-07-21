@@ -31,7 +31,7 @@ class AuthController extends Controller
             'password' => $request->get('password')
         );
         if (Auth::attempt($user_data)) {
-            return redirect('/admin');
+            return redirect('/client');
         } else {
             return back()->with('error', 'Invalid Login');
         }
@@ -40,6 +40,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login'); 
     }
 }
+ 

@@ -25,7 +25,7 @@
                         <ul class="dropdown-user user-header">
                             <p style="margin-left: 20px;">
                             </p>
-                            <a href="{{ url('admin/logout') }}" class="btnpic btn-default">Sign out</a> {{-- <a action="{{ action('Admin/AuthController@logout') }}"
+                            <a href="{{ url('logout') }}" class="btnpic btn-default">Sign out</a> {{-- <a action="{{ action('Admin/AuthController@logout') }}"
                                 class="btnpic btn-default">Sign out</a> --}}
                         </ul>
                     </div>
@@ -56,15 +56,15 @@
                     </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('client/') }}" id="pstock" class="nav-link load">
-                    <i class="nav-icon fa fa-th"></i>
+                            <a href="{{ url('product_stock/') }}" id="pstock" class="nav-link load">
+                    <i class="nav-icon fa fa-product-hunt"></i>
                       <p>
-                        ProductStock
+                        Product Stock
                       </p>
                     </a>
                         </li>
                         <li class="nav-item">
-                                <a href="{{ url('client/') }}" id="product" class="nav-link load">
+                                <a href="{{ url('product/') }}" id="product" class="nav-link load">
                         <i class="nav-icon fa fa-th"></i>
                           <p>
                             Product
