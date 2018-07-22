@@ -56,7 +56,15 @@
                     </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('product_stock/') }}" id="pstock" class="nav-link load">
+                            <a href="{{ url('product/') }}" id="product" class="nav-link load">
+                    <i class="nav-icon fa fa-th"></i>
+                      <p>
+                        Product
+                      </p>
+                    </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('product_stock/') }}" id="product_stock" class="nav-link load">
                     <i class="nav-icon fa fa-product-hunt"></i>
                       <p>
                         Product Stock
@@ -64,14 +72,14 @@
                     </a>
                         </li>
                         <li class="nav-item">
-                                <a href="{{ url('product/') }}" id="product" class="nav-link load">
-                        <i class="nav-icon fa fa-th"></i>
-                          <p>
-                            Product
-                          </p>
-                        </a>
-                            </li>
-                       
+                            <a href="{{ url('hsn/') }}" id="hsn" class="nav-link load">
+                    <i class="nav-icon fa fa-codepen"></i>
+                      <p>
+                        HSN Code  
+                   </p>
+
+                    </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

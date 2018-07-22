@@ -100,17 +100,17 @@
                           $(".load").removeClass("active");
                           $("#client").addClass("active");
                      }
-                     else if(id == "pstock"){
+                     else if(id == "product_stock"){
                           $(".load").removeClass("active");
-                          $("#pstock").addClass("active");
+                          $("#product_stock").addClass("active");
                      }
                     else if(id == "product"){ 
                         $(".load").removeClass("active"); 
                         $("#product").addClass("active");
                     }
-                    else if(id == "gratifypoints"){ 
+                    else if(id == "hsn"){ 
                         $(".load").removeClass("active"); 
-                        $("#gratifypoints").addClass("active");
+                        $("#hsn").addClass("active");
                     }
                      else{
                       //  alert(id);

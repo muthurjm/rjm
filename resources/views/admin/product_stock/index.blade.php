@@ -1,4 +1,4 @@
-<?php $title = "Clients"; ?> 
+<?php $title = "products"; ?> 
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}"> 
 @endpush 
@@ -22,14 +22,14 @@
         @endif
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Clients</h1>
+          <h1>Product Stock</h1>
         </div>
 
-        <div class="col-sm-6">
+        {{-- <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="{{ action('admin\ClientController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add</a>
+            <a href="{{ action('admin\ProductStockController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add</a>
           </ol>
-        </div>
+        </div> --}}
       </div>
     </div>
     <!-- /.container-fluid -->
@@ -46,33 +46,28 @@
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Code</th>
-                  <th>Type</th>
-                  <th>Discount</th>
-                  {{--
-                  <th>Expiry Date</th> --}}
+                  <th>Product No</th>
+                  <th>Product Name</th>
+                  <th>Price(MRP) & Tax</th>
+                  <th>Invoice Price</th>
+                  <th>Hand</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <?php $i=1 ?> @foreach($clients as $client)
+                <?php $i=1 ?> @foreach($products as $product)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td>{{ $client['name'] }}</td>
-                  <td>{{ $client['street'] }}</td>
-                  <td>{{ $client['city'] }}</td>
+                  <td>{{ $product['no'] }}</td>
+                  <td>{{ $product['product_no'] }}</td>
+                  <td>{{ $product['description'] }}</td>
+                  <td>{{ $product['mrp'] }} = {{ $product['tax'] }}</td>
+                  <td>{{ $product['invoice_price'] }}</td>
+                  <td>{{ $product['hand'] }}</td>
                   <td>
-                    <form action="{{action('admin\ClientController@destroy', $client['id'])}}" method="post">
-                      @csrf
-                      <a href="{{action('admin\ClientController@edit', $client['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
-                      <input name="_method" type="hidden" value="DELETE">
-                      <button class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this clients?')) { return false }"
-                        type="submit"><i class='fa fa-trash-o'></i></button>
-                    </form>
-                    <a href="{{action( 'admin\ClientController@show', $client[ 'id'])}}"> <button  class="btn btn-info info1" type="submit"><i class="fa fa-eye"></i></button></a>
-                  </td>
+                      <a href="{{action('admin\productController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+                 </td>
                 </tr>
-
                 <?php $i = $i+1 ?> @endforeach
               </tbody>
             </table>
