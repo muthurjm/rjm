@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Hsn;
 
 class ProductStockController extends Controller
 {
@@ -15,7 +16,15 @@ class ProductStockController extends Controller
      */
     public function index()
     { 
-         $products = Product::all();
+        $products = Product::all();
+        foreach ($products as $product) {
+            $hsn_id = $product->hsn_id;
+            $hsn = Hsn::find($hsn_id);
+            $hsn_code = $hsn->hsn_code;
+            $product['hsn_code'] = $hsn_code;
+            $tax = $hsn->tax;
+            $product['tax'] = $tax;
+        }
         return view('admin/product_stock/index',compact('products'));
     }
 

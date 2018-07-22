@@ -7,7 +7,7 @@
         <div class="col-sm-10 ">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Add Client </h3>
+              <h3 class="card-title">Add Hsn Code </h3>
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
           </ol>
         </div>
         <div class="col-md-10">
-            @if ($message = Session::get('succdess'))
+            @if ($message = Session::get('success'))
             <div class="alert  alert-success">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
               <p>{{ $message }}</p>

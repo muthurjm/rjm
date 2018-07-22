@@ -62,7 +62,6 @@
                       <button class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this Code?')) { return false }"
                         type="submit"><i class='fa fa-trash-o'></i></button>
                     </form>
-                    <a href="{{action( 'admin\HsnController@show', $tax[ 'id'])}}"> <button  class="btn btn-info info1" type="submit"><i class="fa fa-eye"></i></button></a>
                  </td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach

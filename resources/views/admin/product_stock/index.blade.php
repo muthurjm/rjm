@@ -47,26 +47,23 @@
                 <tr>
                   <th>S.No</th>
                   <th>Product No</th>
+                  <th>HSN Code</th>
                   <th>Product Name</th>
-                  <th>Price(MRP) & Tax</th>
-                  <th>Invoice Price</th>
+                  <th>Stock</th>
+                  <th>Tax</th>
                   <th>Hand</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $i=1 ?> @foreach($products as $product)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td>{{ $product['no'] }}</td>
                   <td>{{ $product['product_no'] }}</td>
-                  <td>{{ $product['description'] }}</td>
-                  <td>{{ $product['mrp'] }} = {{ $product['tax'] }}</td>
-                  <td>{{ $product['invoice_price'] }}</td>
-                  <td>{{ $product['hand'] }}</td>
-                  <td>
-                      <a href="{{action('admin\productController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
-                 </td>
+                  <td>{{ $product['hsn_code'] }}</td>
+                  <td>{{ $product['product_name'] }}</td>
+                  <td>{{ $product['stock'] }} </td>
+                  <td>{{ $product['tax'] }}%</td>
+                  <td>{{ $product['value'] }}</td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach
               </tbody>

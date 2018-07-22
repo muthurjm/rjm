@@ -79,7 +79,16 @@
                    </p>
 
                     </a>
-                        </li>
+                        {{-- </li>
+                        <li class="nav-item">
+                            <a href="{{ url('quantity/') }}" id="hsn" class="nav-link load">
+                    <i class="nav-icon fa fa-stop-circle"></i>
+                      <p>
+                        Stock Add 
+                   </p>
+
+                    </a>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
