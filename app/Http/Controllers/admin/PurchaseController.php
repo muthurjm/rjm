@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Hsn;
 use DB;
+use App\Purchase;
 
-class ProductStockController extends Controller
+class PurchaseController extends Controller
 { 
     /**
      * Display a listing of the resource.
@@ -17,16 +18,8 @@ class ProductStockController extends Controller
      */
     public function index()
     { 
-        $products = Product::all();
-        foreach ($products as $product) {
-            $hsn_id = $product->hsn_id;
-            $hsn = Hsn::find($hsn_id);
-            $hsn_code = $hsn->hsn_code;
-            $product['hsn_code'] = $hsn_code;
-            $tax = $hsn->tax;
-            $product['tax'] = $tax;
-        }
-        return view('admin/product_stock/index',compact('products'));
+        $purchases = Purchase::all();
+        return view('admin/purchase/index',compact('purchases'));
     }
 
     /**
@@ -37,7 +30,7 @@ class ProductStockController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view("admin/product_stock/insert",compact("products"));
+        return view("admin/purchase/insert",compact("products"));
     }
 
     /**

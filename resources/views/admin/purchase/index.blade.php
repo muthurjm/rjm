@@ -22,12 +22,12 @@
         @endif
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Product Stock</h1>
+          <h1>Purchase</h1>
         </div>
 
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="{{ action('admin\ProductStockController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add Stock</a>
+            <a href="{{ action('admin\PurchaseController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add Purchase Items</a>
           </ol>
         </div>
       </div>
@@ -46,24 +46,24 @@
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Product No</th>
-                  <th>HSN Code</th>
-                  <th>Product Name</th>
-                  <th>Stock</th>
+                  <th>Invoice No</th>
+                  <th>Invoice Date</th>
+                  <th>Invoice Amount</th>
                   <th>Tax</th>
-                  <th>Hand</th>
+                  <th>SGST</th>
+                  <th>CGST</th>
                 </tr>
               </thead>
               <tbody>
-                <?php $i=1 ?> @foreach($products as $product)
+                <?php $i=1 ?> @foreach($purchases as $purchase)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td>{{ $product['product_no'] }}</td>
-                  <td>{{ $product['hsn_code'] }}</td>
-                  <td>{{ $product['product_name'] }}</td>
-                  <td>{{ $product['stock'] }} </td>
-                  <td>{{ $product['tax'] }}%</td>
-                  <td>{{ $product['value'] }}</td>
+                  <td>{{ $purchase['invoice_number'] }}</td>
+                  <td>{{ $purchase['invoice_date'] }}</td>
+                  <td>{{ $purchase['invoice_amount'] }}</td>
+                  <td>{{ $purchase['taxable'] }} </td>
+                  <td>{{ $purchase['sgst'] }}</td>
+                  <td>{{ $purchase['cgst'] }}</td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach
               </tbody>
