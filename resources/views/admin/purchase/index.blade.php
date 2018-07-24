@@ -1,6 +1,15 @@
 <?php $title = "products"; ?> 
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}"> 
+<style>
+  #example1_filter,
+  #example2_filter {
+    margin-left: 330px !important;
+    width: 50%;
+  }
+</style>
+
+
 @endpush 
 @section('content')
 <!-- Main content -->
@@ -84,9 +93,21 @@
 
 @stop @push('js')
 <script src="{{asset('website/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script>
   $(document).ready(function(){
-      $("#example1").DataTable();   
+      $("#example1").DataTable({
+        dom: 'lfBrtip',
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            buttons: [
+                'excelHtml5',
+                'pdfHtml5'
+            ]
+      });   
     });
 
 </script>
