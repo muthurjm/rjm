@@ -21,6 +21,7 @@ Route::resource('/client', 'admin\ClientController');
 Route::resource('/product_stock', 'admin\ProductStockController');
 Route::resource('/product', 'admin\ProductController');
 Route::resource('/hsn', 'admin\HsnController');
+Route::resource('/purchase', 'admin\PurchaseController');
 });
 Route::get('/login', 'admin\AuthController@index');
 Route::post('/login', 'admin\AuthController@login');

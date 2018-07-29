@@ -24,7 +24,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <a href="{{ action('admin\ProductStockController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add</a>
+            <a href="{{ action('admin\ProductController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add</a>
           </ol>
         </div>
       </div>
@@ -46,7 +46,8 @@
                   <th>Product No</th>
                   <th>HSN Code</th>
                   <th>Product Name</th>
-                  <th>Price(MRP) & Tax</th>
+                  <th>Price(MRP)</th>
+                  <th>Tax</th>
                   <th>Invoice Price(GST)</th>
                   <th>Sales</th>
                   <th>Action</th>
@@ -56,15 +57,15 @@
                 <?php $i=1 ?> @foreach($products as $product)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td>{{ $product['no'] }}</td>
                   <td>{{ $product['product_no'] }}</td>
                   <td>{{ $product['hsn_code'] }}</td>
-                  <td>{{ $product['description'] }}</td>
-                  <td>{{ $product['mrp'] }} = {{ $product['tax'] }}</td>
+                  <td>{{ $product['product_name'] }}</td>
+                  <td>Rs {{ $product['mrp'] }}/- </td>
+                  <td>{{ $product['tax'] }}%</td>
                   <td>{{ $product['invoice_price'] }}</td>
                   <td>{{ $product['sales'] }}</td>
                   <td>
-                      <a href="{{action('admin\productController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+                      <a href="{{action('admin\ProductController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
                  </td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach

@@ -50,7 +50,7 @@ class HsnController extends Controller
         $hsn->hsn_code = $request->hsn_code;
         $hsn->tax = $request->tax;
         if($hsn->save()){
-            return back()->with("success","Code Added Sucessfully");
+            return back()->with("success","Data Added Sucessfully");
         }
     }
 

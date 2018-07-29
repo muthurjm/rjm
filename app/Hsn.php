@@ -10,5 +10,10 @@ class Hsn extends Model
     protected $fillable = [
         'hsn_code','tax'
     ];
+     // product
+     public function product()
+     {
+         return $this->hasMany('App\Product');
+     }
 
 }

@@ -80,6 +80,15 @@
 
                     </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('purchase/') }}" id="hsn" class="nav-link load">
+                    <i class="nav-icon fa fa-stop-circle"></i>
+                      <p>
+                        Purchase
+                   </p>
+
+                    </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

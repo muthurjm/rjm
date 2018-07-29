@@ -1,4 +1,4 @@
-<?php $title = "Add HSN"; ?> 
+<?php $title = "Add Product"; ?> 
 @extends('../admin/layouts/index')
 @section('content')
 <div class="content-wrapper">
@@ -7,13 +7,13 @@
         <div class="col-sm-10 ">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Add Hsn Code </h3>
+              <h3 class="card-title">Add Stock </h3>
             </div>
           </div>
         </div>
         <div class="col-sm-2">
           <ol class="float-sm-right">
-            <a href="{{ url('hsn')}}" class="btn btn-flat btn-custom btn1"><i class="fa fa-bars"></i>&nbsp;Hsn List</a>
+            <a href="{{ url('product')}}" class="btn btn-flat btn-custom btn1"><i class="fa fa-bars"></i>&nbsp;Stock List</a>
           </ol>
         </div>
         <div class="col-md-10">
@@ -32,19 +32,25 @@
         </div>
         <div class="col-md-2"></div>
         <div class="col-sm-8">
-          <form id="formid" method="post" action="{{url('hsn')}}">
+          <form method="post" action="{{url('product_stock')}}">
             @csrf
             <div class="card-body">
               <div class="form-group">
-                <label for="hsn">Hsn Code*</label>
-              <input type="text" id="hsn" class="form-control" required name="hsn_code" placeholder="Enter HSN Code"  title="Hsn Code">
+                <label class="form-check-label" for="product_name"><b>Product Name*</b></label>
+                <select class="form-control select2" name="product_id" id="product_name" style="width:100%;" required>
+                    <option value="" selected="selected">Select Code</option>
+                  @foreach($products as $product){
+                    <option value="{{ $product['id'] }}" >{{ $product['product_no'] }} - {{ $product['product_name'] }}</option>
+                    }
+                    @endforeach
+                  </select>
               </div>
               <div class="form-group">
-                  <label for="tsx">Tax (In Percent)*</label>
-                  <input type="text" id="tax" class="form-control" id="tax" title="Tax" name="tax" placeholder="Enter Product Name" required>
-                    </div>
+                <label for="quantity">Quantity*</label>
+                <input type="text" class="form-control" id="quantity" title="Quantity" name="quantity" placeholder="Enter Quantity" required>
+                  </div>
               <div class="card-footer">
-                <button type="submit" id="add_hsn" class="btn btn-primary">Add Hsn Code</button>
+                <button type="submit" id="add_client" class="btn btn-primary">Add Stock</button>
               </div>
           </form>
           </div>
@@ -57,13 +63,14 @@
   <!-- /.content-wrapper -->
 @stop
 @push("js")
-{{-- <script>
-$('#formid').on('keyup keypress', function(e) {
-  var keyCode = e.keyCode || e.which;
-  if (keyCode === 13) { 
-    e.preventDefault();
-    return false;
-  }
-});
-</script> --}}
+<script src="{{asset('website/plugins/select2/select2.full.min.js')}}"></script>
+<script>
+  $(document).ready(function () { 
+          $(function () {
+            $('.select2').select2()
+        });
+    });
+
+</script>
+
 @endpush

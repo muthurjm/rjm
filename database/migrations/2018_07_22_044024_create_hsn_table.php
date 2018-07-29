@@ -18,7 +18,7 @@ class CreateHsnTable extends Migration
             $table->increments('id');
             $table->string('hsn_code')->unique();
             $table->bigInteger('tax'); 
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

@@ -1,4 +1,4 @@
-<?php $title = "Add Client"; ?> 
+<?php $title = "Add Product"; ?> 
 @extends('../admin/layouts/index')
 @section('content')
 <div class="content-wrapper">
@@ -7,17 +7,17 @@
         <div class="col-sm-10 ">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Add Client </h3>
+              <h3 class="card-title">Add Product </h3>
             </div>
           </div>
         </div>
         <div class="col-sm-2">
           <ol class="float-sm-right">
-            <a href="{{ url('client')}}" class="btn btn-flat btn-custom btn1"><i class="fa fa-bars"></i>&nbsp;Client List</a>
+            <a href="{{ url('product')}}" class="btn btn-flat btn-custom btn1"><i class="fa fa-bars"></i>&nbsp;Product List</a>
           </ol>
         </div>
         <div class="col-md-10">
-            @if ($message = Session::get('succdess'))
+            @if ($message = Session::get('success'))
             <div class="alert  alert-success">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
               <p>{{ $message }}</p>
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-2"></div>
         <div class="col-sm-8">
-          <form id="formid" method="post" action="{{url('client')}}">
+          <form method="post" action="{{url('product')}}">
             @csrf
             <div class="card-body">
               <div class="form-group">
@@ -41,31 +41,33 @@
               <input type="hidden" name="product_no" value="{{ $product_no }}">
               </div>
               <div class="form-group">
+                <label class="form-check-label" for="hsn_code"><b>Hsn Code*</b></label>
+                <select class="form-control select2" name="hsn_code" id="hsn_code" style="width:100%;" required>
+                    <option value="" selected="selected">Select Code</option>
+                  @foreach($hsnes as $hsn){
+                    <option value="{{ $hsn['id'] }}" >{{ $hsn['hsn_code'] }}</option>
+                    }
+                    @endforeach
+                  </select>
+              </div>
+              <div class="form-group">
                   <label for="Client Name">Product Name*</label>
                   <input type="text" class="form-control" id="product_name" title="Product Name" name="name" placeholder="Enter Product Name" required>
                     </div>
               <div class="form-group">
-                <label for="Street">Street*</label>
-                <input type="text" class="form-control" id="Street" title="Street" name="street" placeholder="Enter Street" required>
+                <label for="mrp">MRP*</label>
+                <input type="text" class="form-control" id="mrp" title="MRP" name="mrp" placeholder="Enter MRP" required>
                   </div>
-              <div class="form-group">
-                  <label for="City">City*</label>
-                  <input type="text" class="form-control" id="City" title="City" name="city" placeholder="Enter City" required>
-                    </div>
-                <div class="form-group">
-                    <label for="Tin">Tin*</label>
-                    <input type="text" class="form-control" id="Tin" title="Street" name="tin" placeholder="Enter Tin" required>
+                  <div class="form-group">
+                    <label for="Sales">Sales*</label>
+                    <input type="text" class="form-control" id="sales" title="Sales" name="sales" placeholder="Enter Sales" required>
                       </div>
                   <div class="form-group">
-                      <label for="Phone1">Phone1*</label>
-                      <input type="text" class="form-control" id="Phone1" title="Phone1" name="phone1" placeholder="Enter Phone1" required>
+                      <label for="invoice_price">Invoice Price*</label>
+                      <input type="text" class="form-control" id="invoice_price" title="Invoice Price" name="invoice_price" placeholder="Enter Invoice Price" required>
                         </div>
-                  <div class="form-group">
-                        <label for="Phone2">Phone2*</label>
-                        <input type="text" class="form-control" id="Phone2" title="Phone2" name="phone2" placeholder="Enter Phone2" >
-                  </div>
               <div class="card-footer">
-                <button type="submit" id="add_client" class="btn btn-primary">Add Client</button>
+                <button type="submit" id="add_client" class="btn btn-primary">Add Product</button>
               </div>
           </form>
           </div>
@@ -78,13 +80,14 @@
   <!-- /.content-wrapper -->
 @stop
 @push("js")
-{{-- <script>
-$('#formid').on('keyup keypress', function(e) {
-  var keyCode = e.keyCode || e.which;
-  if (keyCode === 13) { 
-    e.preventDefault();
-    return false;
-  }
-});
-</script> --}}
+<script src="{{asset('website/plugins/select2/select2.full.min.js')}}"></script>
+<script>
+  $(document).ready(function () { 
+          $(function () {
+            $('.select2').select2()
+        });
+    });
+
+</script>
+
 @endpush
