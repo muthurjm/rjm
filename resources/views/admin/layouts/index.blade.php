@@ -112,6 +112,10 @@
                         $(".load").removeClass("active"); 
                         $("#hsn").addClass("active");
                     }
+                    else if(id == "emptyproduct"){ 
+                        $(".load").removeClass("active"); 
+                        $("#emptyproduct").addClass("active");
+                    }
                      else{
                       //  alert(id);
                      }

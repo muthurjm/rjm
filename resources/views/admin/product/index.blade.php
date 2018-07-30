@@ -44,8 +44,8 @@
                 <tr>
                   <th>S.No</th>
                   <th>Product No</th>
-                  <th>HSN Code</th>
                   <th>Product Name</th>
+                  <th>HSN Code</th>
                   <th>Price(MRP)</th>
                   <th>Tax</th>
                   <th>Invoice Price(GST)</th>
@@ -58,8 +58,8 @@
                 <tr>
                   <td>{{ $i }}</td>
                   <td>{{ $product['product_no'] }}</td>
-                  <td>{{ $product['hsn_code'] }}</td>
                   <td>{{ $product['product_name'] }}</td>
+                  <td>{{ $product['hsn_code'] }}</td>
                   <td>Rs {{ $product['mrp'] }}/- </td>
                   <td>{{ $product['tax'] }}%</td>
                   <td>{{ $product['invoice_price'] }}</td>

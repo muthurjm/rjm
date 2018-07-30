@@ -1,4 +1,4 @@
-<?php $title = "products"; ?> 
+<?php $title = "Products"; ?> 
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}"> 
 @endpush 
@@ -22,7 +22,7 @@
         @endif
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Product Stock</h1>
+          <h1>Empty Product</h1>
         </div>
       </div>
     </div>
@@ -41,25 +41,24 @@
                 <tr>
                   <th>S.No</th>
                   <th>Product No</th>
-                  <th>Product Name</th>
                   <th>HSN Code</th>
+                  <th>Product Name</th>
                   <th>Stock</th>
-                  <th>Tax</th>
                   <th>Value</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $i=1 ?> @foreach($products as $product)
+                <?php if($product->stock <= 10){ ?>
                 <tr>
                   <td>{{ $i }}</td>
                   <td>{{ $product['product_no'] }}</td>
-                  <td>{{ $product['product_name'] }}</td>
                   <td>{{ $product['hsn_code'] }}</td>
+                  <td>{{ $product['product_name'] }}</td>
                   <td>{{ $product['stock'] }} </td>
-                  <td>{{ $product['tax'] }}%</td>
                   <td>{{ $product['value'] }}</td>
                 </tr>
-                <?php $i = $i+1 ?> @endforeach
+              <?php } $i = $i+1 ?> @endforeach
               </tbody>
             </table>
           </div>
