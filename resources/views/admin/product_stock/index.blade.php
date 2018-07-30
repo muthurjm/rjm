@@ -57,7 +57,7 @@
                   <td>{{ $product['hsn_code'] }}</td>
                   <td>{{ $product['stock'] }} </td>
                   <td>{{ $product['tax'] }}%</td>
-                  <td>{{ $product['value'] }}</td>
+                  <td><?php echo (($product['invoice_price']*$product['tax'])*$product['stock']); ?></td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach
               </tbody>
