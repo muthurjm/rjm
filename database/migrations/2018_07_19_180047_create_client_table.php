@@ -16,11 +16,11 @@ class CreateClientTable extends Migration
         Schema::create('client', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('client_name');
+            $table->string('client_no');
             $table->string('name');
-            $table->string('street');
+            $table->string('street')->nullable();
             $table->string('city');
-            $table->string('tin');
+            $table->string('tin')->nullable();
             $table->bigInteger('phone1')->unique();
             $table->bigInteger('phone2')->unique()->nullable();
             $table->timestamps();

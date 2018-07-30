@@ -8,6 +8,7 @@ use App\Product;
 use App\Hsn;
 use DB;
 use App\Purchase;
+use App\PurchaseProduct;
 
 class PurchaseController extends Controller
 { 
@@ -42,13 +43,36 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         // return $_POST;
-        $product = DB::table('product')
-        ->where('id', '=',  $request->product_id)
-        ->get();
-        $stock = $request->quantity + $product[0]->stock;
-        Product::where('id', $request->product_id)->update(array(
+        $purchase = new Purchase();
+        $purchase->invoice_number = $request->invoice_number;
+        $purchase->invoice_date = $request->invoice_date;
+        $purchase->invoice_amount = $request->invoice_amount;
+        $purchase->taxable = $request->taxable;
+        $purchase->sgst = $request->sgst;
+        $purchase->cgst = $request->cgst;
+        $purchase->save();
+        $id = $purchase->id;
+        $product = new Product();
+        foreach ($request->quantity as $key1 => $value1) {
+            foreach ($request->product as $key2 => $value2) {
+            $purchase_product[$key1] = new PurchaseProduct();
+            $purchase_product[$key1]->purchase_id = $id;
+            $purchase_product[$key1]->product_id = $value2;
+            $purchase_product[$key1]->quantity = $value1;
+            if($value1 != null && $value2 != null){
+            $purchase_product[$key1]->save();
+            $product = DB::table('product')
+                        ->where('id', '=',  $value2)
+                        ->get();
+            $stock = $value1 + $product[0]->stock;
+            Product::where('id', $value2)->update(array(
             'stock' => $stock,
         ));
+        
+            }
+            break;
+        }
+    }
             return back()->with("success","Stock Added Sucessfully");
     }
 

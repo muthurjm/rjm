@@ -24,12 +24,6 @@
         <div class="col-sm-6">
           <h1>Product Stock</h1>
         </div>
-
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <a href="{{ action('admin\ProductStockController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add Stock</a>
-          </ol>
-        </div>
       </div>
     </div>
     <!-- /.container-fluid -->
@@ -51,7 +45,7 @@
                   <th>Product Name</th>
                   <th>Stock</th>
                   <th>Tax</th>
-                  <th>Hand</th>
+                  <th>Value</th>
                 </tr>
               </thead>
               <tbody>

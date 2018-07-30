@@ -1,32 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Product;
-use App\Hsn;
-use DB;
 
-class ProductStockController extends Controller
-{ 
+class InvoiceController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $products = Product::all();
-        foreach ($products as $product) {
-            $hsn_id = $product->hsn_id;
-            $hsn = Hsn::find($hsn_id);
-            $hsn_code = $hsn->hsn_code;
-            $product['hsn_code'] = $hsn_code;
-            $tax = $hsn->tax;
-            $product['tax'] = $tax;
-        }
-        return view('admin/product_stock/index',compact('products'));
+    {
+        return view("invoice");
     }
 
     /**
@@ -36,8 +23,7 @@ class ProductStockController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        return view("admin/product_stock/insert",compact("products"));
+        //
     }
 
     /**
@@ -48,16 +34,7 @@ class ProductStockController extends Controller
      */
     public function store(Request $request)
     {
-        // // return $_POST;
-        // $product = DB::table('product')
-        // ->where('id', '=',  $request->product_id)
-        // ->get();
-        // $stock = $request->quantity + $product[0]->stock;
-        // Product::where('id', $request->product_id)->update(array(
-        //     // 'hand' => $stock,
-        //     'stock' => $request->quantity,
-        // ));
-        //     return back()->with("success","Stock Added Sucessfully");
+        //
     }
 
     /**

@@ -21,11 +21,9 @@ class CreateProductTable extends Migration
             $table->string('product_no');
             $table->string('product_name')->unique()->nullable();
             $table->string('mrp')->nullable();
-            // $table->string('tax')->nullable();
             $table->string('sales')->nullable();
             $table->string('invoice_price')->nullable();
-            // $table->string('stock_status')->nullable();
-            $table->string('stock')->nullable();
+            $table->string('stock')->default(0);
             $table->string('value')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps(); 
