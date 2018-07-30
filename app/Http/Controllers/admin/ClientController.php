@@ -27,18 +27,14 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $client_name = "1000";
+        $client_no = "1001";
         try{
-        $client_name = Client::all()->last()->client_name;
-        $client_name = $client_name+1;
+        $client_no = Client::all()->last()->client_no;
+        $client_no = $client_no+1;
          }
         catch (\Exception $e) {
-        //      $client_name = "1000";    
         }
-        // if($client_name = ""){
-        //     $client_name = "1000";
-        // }
-        return view("admin/client/insert",compact("client_name"));
+        return view("admin/client/insert",compact("client_no"));
     }
 
     /**
@@ -51,20 +47,27 @@ class ClientController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'name' => 'required',
-            'street' => 'required',
+            'name' => 'required|unique:client',
+            'street' => 'nullable',
             'city' => 'required',
-            'tin' => 'required|unique:client',
-            'street' => 'required',
-            'phone1' => 'bail|required|numeric|unique:client',
+            'tin' => 'nullable|unique:client',
             'phone2' => 'nullable',
         ]);
-        if ($validator->fails()) {
-            return back()->with('error','Given Data Invalid');
+        $k = 1;
+               $clients = Client::all();
+             foreach ($clients as $client) {
+                $phone1 = $client->phone1;
+                $phone2 = $client->phone2;
+                if($phone1 == $request->phone1 || $phone2 == $request->phone2 || $phone2 == $request->phone1 || $phone1 == $request->phone2){
+                    $k=0;
+                }
+            }
+    
+        if ($validator->fails() || $k = 0) {
+           return back()->with('error','Given Data Invalid');
         }
-       // $client_name = Client::all()->last()->client_name;
         $client = new Client;
-        $client->client_name = $request->client_name;
+        $client->client_no = $request->client_no;
         $client->name = $request->name;
         $client->street = $request->street;
         $client->city = $request->city;
