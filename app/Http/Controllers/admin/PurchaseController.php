@@ -84,7 +84,9 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //
+        $productpurchase =  Purchase::find($id);
+        $purchases =  PurchaseProduct::all();
+        return view("admin/purchase/view",compact("purchases","productpurchase"));
     }
 
     /**
