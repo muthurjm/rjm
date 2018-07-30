@@ -67,7 +67,7 @@
                 <?php $i=1 ?> @foreach($purchases as $purchase)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td>{{ $purchase['invoice_number'] }}</td>
+                  <td><a href="{{action('admin\PurchaseController@show',  $purchase['id']) }}">{{ $purchase['invoice_number'] }}</a></td>
                   <td>{{ $purchase['invoice_date'] }}</td>
                   <td>{{ $purchase['invoice_amount'] }}</td>
                   <td>{{ $purchase['taxable'] }} </td>
