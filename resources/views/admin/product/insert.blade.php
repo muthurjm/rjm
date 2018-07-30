@@ -59,13 +59,13 @@
                 <input type="text" class="form-control" id="mrp" title="MRP" name="mrp" placeholder="Enter MRP" required>
                   </div>
                   <div class="form-group">
-                    <label for="Sales">Sales*</label>
-                    <input type="text" class="form-control" id="sales" title="Sales" name="sales" placeholder="Enter Sales" required>
-                      </div>
-                  <div class="form-group">
                       <label for="invoice_price">Invoice Price*</label>
                       <input type="text" class="form-control" id="invoice_price" title="Invoice Price" name="invoice_price" placeholder="Enter Invoice Price" required>
                         </div>
+                        <div class="form-group">
+                            <label for="target">Intimate value*</label>
+                            <input type="text" class="form-control" id="target" title="Target" name="target" placeholder="Enter Intimate Value" required>
+                              </div>
               <div class="card-footer">
                 <button type="submit" id="add_client" class="btn btn-primary">Add Product</button>
               </div>

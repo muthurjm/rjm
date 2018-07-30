@@ -8,7 +8,7 @@ use App\Product;
 use App\Hsn;
 use DB;
 use Validator;
-
+ 
 class ProductController extends Controller
 {
     /**
@@ -63,12 +63,14 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return back()->with('error','Product Already Exist');
         }
+        $hsn = Hsn::find($request->hsn_code);
         $product  = new Product();
         $product->product_no = $request->product_no;
         $product->hsn_id = $request->hsn_code;
         $product->product_name = $request->name;
         $product->mrp = $request->mrp;
-        $product->sales = $request->sales;
+        $product->target = $request->target;
+        $product->tax = $hsn->tax;
         $product->invoice_price = $request->invoice_price;
         if($product->save()){
             return back()->with("success","Product Added Sucessfully");
