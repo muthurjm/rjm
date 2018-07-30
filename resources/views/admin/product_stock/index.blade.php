@@ -42,7 +42,7 @@
                   <th>S.No</th>
                   <th>Product No</th>
                   <th>Product Name</th>
-                  <th>HSN Code</th>
+                  <th>Invoice Price</th>
                   <th>Stock</th>
                   <th>Tax</th>
                   <th>Value</th>
@@ -54,10 +54,10 @@
                   <td>{{ $i }}</td>
                   <td>{{ $product['product_no'] }}</td>
                   <td>{{ $product['product_name'] }}</td>
-                  <td>{{ $product['hsn_code'] }}</td>
+                  <td>{{ $product['invoice_price'] }}</td>
                   <td>{{ $product['stock'] }} </td>
                   <td>{{ $product['tax'] }}%</td>
-                  <td><?php echo (($product['invoice_price']*$product['tax'])*$product['stock']); ?></td>
+                  <td><?php echo $product['invoice_price']*$product['stock']; ?></td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach
               </tbody>

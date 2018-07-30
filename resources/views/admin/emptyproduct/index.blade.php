@@ -56,7 +56,7 @@
                   <td>{{ $product['product_name'] }}</td>
                   <td>{{ $product['stock'] }} </td>
                   <td>{{ $product['target'] }} </td>
-                  <td><?php echo (($product['invoice_price']*$product['tax'])*$product['stock']); ?></td>
+                  <td><?php echo $product['invoice_price']*$product['stock']; ?></td>
                 </tr>
               <?php } $i = $i+1 ?> @endforeach
               </tbody>
