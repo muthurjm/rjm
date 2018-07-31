@@ -20,7 +20,7 @@ class InvoiceController extends Controller
         $bill_no = "1000";
         try{
         $bill_no = Invoices::all()->last()->invoice_number;
-        $bill_no = $client_no+1;
+        $bill_no = $bill_no+1;
          }
         catch (\Exception $e) {
         }
@@ -87,43 +87,47 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        $cgst_6 = $request->gst12/2;
+        $cgst_9 = $request->gst18/2;
+        $cgst_14 = $request->gst14/2;
         // return $_POST;
-        $client = [];
-        $client["invoice_number"] = $request->invoice_number;
-        $client["client_code"] = $request->client_code;
-        $client["street"] = $request->street;
-        $client["city"] = $request->city;
-        $client["tin"] = $request->tin;
-        $client["phone"] = $request->phone;
-        $client["product_code"] = $request->product_code;
-        $client["quantity"] = $request->quantity;
-        $client["price"] = $request->price;
-        // foreach($client["product_code"] as $product_code){
-        //     foreach($client["price"] as $price){
-        //         foreach($client["quantity"] as $quantity){
-        //             if($product_code != null){
-        //                 if($quantity != null && $price != null){
-        //                 $client["amount"] = $price * $quantity;
-        //                 }
-        //                 else{
-        //                     // return $product_code;
-        //                     // return $price;
-        //                     return $quantity;
-        //                     // return back()->with("error","Quantity or Price is invalid");
-        //                 }
-        //             }
-        //             // break;
-        //         }
-        //         // break;
-        //     }
-        // }
-        return $client;
-        // return view("invoiceconfirm",compact("client"));
-        // return $client["quantity"];
-        // $client["product_code"] = $request->product_code;
-        // $invoice  = new Invoice();
-        // $invoice->invoice_number = $request->invoice_number;
-        // $invoice->invoice_date = $request->invoice_date;
+        $client = new Invoices();
+        $client->invoice_number = $request->invoice_number;
+        $client->client_code = $request->client_code;
+        $client->street = $request->street;
+        $client->name = $request->name;
+        $client->city = $request->city;
+        $client->tin = $request->tin;
+        $client->phone = $request->phone;
+        $client->invoice_date = date("Y-m-d") ;
+        $client->sub_total = $request->subtotal;
+        $client->gst_18 = $request->gst18;
+        $client->gst_12 = $request->gst12;
+        $client->gst_28 = $request->gst28;
+        $client->cgst_6 = $cgst_6;
+        $client->cgst_9 = $cgst_9;
+        $client->cgst_14 = $cgst_14;
+        $client->sgst_6 = $cgst_6;
+        $client->sgst_9 =  $cgst_9;
+        $client->sgst_14 = $cgst_14;  
+        $client->grand_total = $request->grandtotal;  
+        $client->save();
+        foreach($request->product_code as $keys => $sproduct_code){
+            $purchaseproduct[$keys] = new InvoicesPurchase();
+            $purchaseproduct[$keys]->invoice_id = $client->id;
+            $purchaseproduct[$keys]->product_code = $sproduct_code;
+            $purchaseproduct[$keys]->hsn = $request->hsn[$keys];
+            $purchaseproduct[$keys]->mrp = $request->mrp[$keys];
+            $purchaseproduct[$keys]->product_name = $request->product[$keys];
+            $purchaseproduct[$keys]->quantity = $request->quantity[$keys];
+            $purchaseproduct[$keys]->price = $request->price[$keys];
+            $purchaseproduct[$keys]->gst = $request->tax[$keys];
+            $purchaseproduct[$keys]->amount = $request->amount[$keys];
+            if($sproduct_code != null){
+            $purchaseproduct[$keys]->save();
+            }
+        }       
+        return back()->with("success","Added Successfully");
 
     }
 
