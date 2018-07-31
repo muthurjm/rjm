@@ -87,7 +87,37 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        return $_POST;
+        // return $_POST;
+        $client = [];
+        $client["invoice_number"] = $request->invoice_number;
+        $client["client_code"] = $request->client_code;
+        $client["street"] = $request->street;
+        $client["city"] = $request->city;
+        $client["tin"] = $request->tin;
+        $client["phone"] = $request->phone;
+        $client["product_code"] = $request->product_code;
+        $client["quantity"] = $request->quantity;
+        $client["price"] = $request->price;
+        foreach($client["product_code"] as $product_code){
+            foreach($client["price"] as $price){
+                foreach($client["quantity"] as $quantity){
+                    if($quantity != null && $price != null){
+                    $client["amount"] = $price * $quantity;
+                    }
+                    else{
+                        return back()->with("error","Quantity or Price is invalid");
+                    }
+                }
+            }
+        }
+        return $client;
+        // return view("invoiceconfirm",compact("client"));
+        // return $client["quantity"];
+        // $client["product_code"] = $request->product_code;
+        // $invoice  = new Invoice();
+        // $invoice->invoice_number = $request->invoice_number;
+        // $invoice->invoice_date = $request->invoice_date;
+
     }
 
     /**

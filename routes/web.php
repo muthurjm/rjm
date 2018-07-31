@@ -13,7 +13,7 @@
 
 Route::resource('/', 'InvoiceController');
 Route::post('/invoice/ajax1/', 'InvoiceController@ajax1');
-// Route::post('/invoice/ajax2/', 'InvoiceController@ajax2');
+Route::resource('/invoiceconfirm', 'InvoiceConfirmController');
 Route::post('/raw', 'InvoiceController@ajax3');
 
 Route::group(['middleware'=>'auth'], function () {
