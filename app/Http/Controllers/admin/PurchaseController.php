@@ -22,7 +22,17 @@ class PurchaseController extends Controller
         $purchases = Purchase::all();
         return view('admin/purchase/index',compact('purchases'));
     }
-
+         /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ajax(Request $request)
+    {
+        $products = Product::all();
+        return view("admin/purchase/raw",compact("products"));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,7 +52,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        // return $_POST;
+        return $_POST;
         $purchase = new Purchase();
         $purchase->invoice_number = $request->invoice_number;
         $purchase->invoice_date = $request->invoice_date;
@@ -54,10 +64,9 @@ class PurchaseController extends Controller
         $id = $purchase->id;
         $product = new Product();
         foreach ($request->quantity as $key1 => $value1) {
-            foreach ($request->product as $key2 => $value2) {
             $purchase_product[$key1] = new PurchaseProduct();
             $purchase_product[$key1]->purchase_id = $id;
-            $purchase_product[$key1]->product_id = $value2;
+            $purchase_product[$key1]->product_id = $request->product[$key1];
             $purchase_product[$key1]->quantity = $value1;
             if($value1 != null && $value2 != null){
             $purchase_product[$key1]->save();
@@ -68,9 +77,6 @@ class PurchaseController extends Controller
             Product::where('id', $value2)->update(array(
             'stock' => $stock,
         ));
-        
-            }
-            break;
         }
     }
             return back()->with("success","Stock Added Sucessfully");
