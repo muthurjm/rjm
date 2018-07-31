@@ -25,6 +25,7 @@ Route::resource('/hsn', 'admin\HsnController');
 Route::resource('/purchase', 'admin\PurchaseController');
 Route::resource('/emptyproduct', 'admin\EmptyProductController');
 Route::resource('/taxpay', 'admin\TaxPayController');
+Route::post('/taxpay/ajax', 'admin\TaxPayController@ajax');
 });
 Route::get('/login', 'admin\AuthController@index');
 Route::post('/login', 'admin\AuthController@login');

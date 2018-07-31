@@ -8,6 +8,7 @@ use App\Client;
 use App\InvoicesPurchase;
 use App\Product;
 use App\Hsn;
+use Validator;
 class InvoiceController extends Controller
 {
     /**
@@ -87,10 +88,16 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+             'invoice_number' => 'bail|required|unique:invoices',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('error','Given Data Invalid');
+        }
         $cgst_6 = $request->gst12/2;
         $cgst_9 = $request->gst18/2;
         $cgst_14 = $request->gst14/2;
-        // return $_POST;
         $client = new Invoices();
         $client->invoice_number = $request->invoice_number;
         $client->client_code = $request->client_code;

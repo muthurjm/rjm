@@ -314,7 +314,7 @@
        }
        else if(gst == 28){
          gst28 = gst28+parseFloat(amount);
-       }
+       } 
      }
     var grandtotal = parseFloat(subtotal+gst18+gst12+gst28);
      $(".total").append(subtotal);
