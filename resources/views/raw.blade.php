@@ -10,7 +10,7 @@ $i =  $sum;
 ?>
 <link rel="stylesheet" href="{{asset('website/plugins/select2/select2.min.css')}}">
 <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
                               <div class="form-group">
                                   <label style="margin-top: 10px;" class="form-check-label" for="product_code{{ $i }}"><b>Product Code*</b></label>
                               <select class="form-control select2 product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[]" id="product_code" style="width:100%;">
@@ -43,17 +43,20 @@ $i =  $sum;
                                       <textarea class="hide form-control product{{ $i }}" name="product[]"></textarea>
                                         </div>
                               </div> --}}
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                   <div class="form-group">
                                       <label for="quantity{{ $i }}">Quantity*</label>
                                       <input type="text" class="form-control quantity quantity{{ $i }}" id="quantity{{ $i }}" name="quantity[]" title="Quantity" >
                                         </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                                   <div class="form-group">
                                       <label for="price{{ $i }}">Price*</label>
                                   <input type="text" class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[]">
                                         </div>
+                              </div>
+                              <div class="col-md-3">
+                              <button style="margin-top:-103px;margin-left: 740px;" class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-plus"></i>Remove</button>
                               </div>
                               {{-- <div class="col-md-1">
                                   <div class="form-group">
