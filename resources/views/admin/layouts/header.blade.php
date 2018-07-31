@@ -97,6 +97,14 @@
                        </p>
                         </a>
                             </li>
+                            <li class="nav-item">
+                                    <a href="{{ url('/taxpay') }}" id="taxpay" class="nav-link load">
+                            <i class="nav-icon fa fa-twitch"></i>
+                              <p>
+                                Tax pay
+                           </p>
+                            </a>
+                                </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

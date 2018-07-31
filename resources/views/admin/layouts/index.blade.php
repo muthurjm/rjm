@@ -116,6 +116,10 @@
                         $(".load").removeClass("active"); 
                         $("#emptyproduct").addClass("active");
                     }
+                    else if(id == "taxpay"){ 
+                        $(".load").removeClass("active"); 
+                        $("#taxpay").addClass("active");
+                    }
                      else{
                       //  alert(id);
                      }
