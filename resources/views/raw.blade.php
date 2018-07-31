@@ -1,13 +1,3 @@
-<?php
-$x = 2;//want number of digits for the random number
-$sum = 0;
-for($i=0;$i<$x;$i++)
-{
-    $sum = $sum + rand(0,9)*pow(10,$i);
-
-}
-$i =  $sum;
-?>
 <link rel="stylesheet" href="{{asset('website/plugins/select2/select2.min.css')}}">
 <div class="row">
         <div class="col-md-3">
