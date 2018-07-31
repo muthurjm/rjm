@@ -2,6 +2,11 @@
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{asset('website/plugins/datepicker/datepicker3.css')}}"> 
+<style>
+    body{
+        overflow-x: hidden;
+    }
+</style>
 @endpush 
 @section('content')
 <div class="content-wrapper">
