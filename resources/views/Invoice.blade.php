@@ -82,7 +82,7 @@
               <div class="form-group">
                 <label for="code">Bill No*</label>
               <input type="text" class="form-control" id="client_name" value="{{ $bill_no }}"  disabled title="Client Name">
-              <input type="hidden" name="invoice_number" value="{{ $bill_no }}">
+              <input type="hidden" name="client_name" value="{{ $bill_no }}">
               </div>
                 </div>
                 <div class="col-md-5">
@@ -127,12 +127,75 @@
                       </div>
                       <hr>
             </div>
+            
+
             <div class="row">
-              <?php $i=1 ?>
-                      <div class="col-md-3">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="total">Sub Total*</label>
+                        <textarea readonly class="form-control total" id="total" title="Sub Total" placeholder="Select product" required></textarea>
+                        <textarea class="hide form-control total"  name="total"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="gst12">Gst 12%*</label>
+                        <textarea readonly class="form-control gst12" id="gst12" title="GST 12%" placeholder="Select product" required></textarea>
+                        <textarea class="hide form-control gst12"  name="gst12"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="gst18">Gst 18%*</label>
+                        <textarea readonly class="form-control gst18" id="gst18" title="GST 18%" placeholder="Select product" required></textarea>
+                        <textarea class="hide form-control gst18"  name="total"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="gst28">Gst 28%*</label>
+                        <textarea readonly class="form-control gst28" id="gst28" title="GST 28%" placeholder="Select product" required></textarea>
+                        <textarea class="hide form-control gst28"  name="gst28"></textarea>
+                  </div>
+                </div> 
+                <div class="col-md-2">
+                    <button style="margin-top:34px;" type="submit" id="calculate" class="btn btn-primary">Calculate </button>
+                </div> 
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-2">
+                 <label><b>Product Code*</b></label>
+              </div>
+              <div class="col-md-1">
+                 <label>Hsn Code*</label>
+                </div>
+                <div class="col-md-1">
+                  <label>MRP*</label>
+                </div>
+                <div class="col-md-2">
+                    <label>Product Name*</label>
+                  </div>
+                <div class="col-md-1">
+                  <label>Quantity*</label>
+                </div>
+                <div class="col-md-2">
+                  <label>Price*</label>
+                </div>
+                <div class="col-md-1">
+                  <label>GST*</label>
+                </div>
+                <div class="col-md-1">
+                  <label>Amount*</label>
+                </div>
+              </div>
+            </div>
+                <div class="row">
+              <?php for($i=0;$i<=15;$i++){ ?>
+                      <div class="col-md-2">
                           <div class="form-group">
-                              <label style="margin-top: 10px;" class="form-check-label" for="product_code{{ $i }}"><b>Product Code*</b></label>
-                          <select class="form-control select2 product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[]" id="product_code" style="width:100%;">
+                          <select class="form-control select2 product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
                                   <option value="" selected="selected">Select Product</option>
                                     @foreach($products as $product){
                                     <option value="{{ $product['id'] }}" >{{ $product['id'] }} - {{ $product['product_name'] }}</option>
@@ -141,58 +204,49 @@
                                 </select>
                             </div>
                           </div>
-                          {{-- <div class="col-md-1">
+                          <div class="col-md-1">
                               <div class="form-group">
-                                  <label for="hsn{{ $i }}">Hsn Code*</label>
+                                  
                               <textarea readonly class="form-control hsn{{ $i }}" id="hsn{{ $i }}" title="Hsn Code" placeholder="Hsn" required></textarea>
-                                  <textarea class="hide form-control hsn{{ $i }}" name="hsn[]"></textarea>
+                                  <textarea class="hide form-control hsn{{ $i }}" name="hsn[{{ $i }}]"></textarea>
                                     </div>
                           </div>
                           <div class="col-md-1">
                               <div class="form-group">
-                                  <label for="mrp{{ $i }}">MRP*</label>
                                   <textarea readonly class="form-control mrp{{ $i }}" id="mrp{{ $i }}" title="MRP"  placeholder="MRP"  required></textarea>
-                                  <textarea class="hide form-control mrp{{ $i }}" name="mrp[]"></textarea>
+                                  <textarea class="hide form-control mrp{{ $i }}" name="mrp[{{ $i }}]"></textarea>
                                     </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group">
-                                  <label for="product{{ $i }}">Product Name*</label>
                                   <textarea readonly class="form-control product{{ $i }}" id="product{{ $i }}" title="Product Name" placeholder="Select Product Name" required></textarea>
-                                  <textarea class="hide form-control product{{ $i }}" name="product[]"></textarea>
-                                    </div>
-                          </div> --}}
-                          <div class="col-md-3">
-                              <div class="form-group">
-                                  <label for="quantity{{ $i }}">Quantity*</label>
-                                  <input type="text" class="form-control quantity quantity{{ $i }}" id="quantity{{ $i }}" name="quantity[]" title="Quantity" >
+                                  <textarea class="hide form-control product{{ $i }}" name="product[{{ $i }}]"></textarea>
                                     </div>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-1">
                               <div class="form-group">
-                                  <label for="price{{ $i }}">Price*</label>
-                              <input type="text" class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[]">
-                                    </div>
-                          </div>
-                          {{-- <div class="col-md-1">
-                              <div class="form-group">
-                                  <label for="tax{{ $i }}">GST*</label>
-                                  <textarea readonly class="form-control tax{{ $i }}" id="tax{{ $i }}" title="GST"></textarea>
-                                  <textarea class="hide form-control tax{{ $i }}" name="tax[]"></textarea>
+                                  <input type="text" class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
                                     </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group">
-                                  <label for="amount{{ $i }}">Amount*</label>
-                                  <textarea readonly class="form-control amount{{ $i }}" id="amount{{ $i }}" title="Amount"  required></textarea>
-                                  <textarea class="hide form-control amount{{ $i }}" name="amount[]"></textarea>
+                              <input type="text" class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[{{ $i }}]">
                                     </div>
-                          </div> --}}
-                        <div class="col-md-1">
-                            <button style="margin-top:37px;" class="btn btn-success success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
-                        </div>
-                        <div class="csample increment"></div>
+                          </div>
+                          <div class="col-md-1">
+                              <div class="form-group">
+                                  <textarea readonly class="form-control tax{{ $i }}" id="tax{{ $i }}" title="GST"></textarea>
+                                  <textarea class="hide form-control tax{{ $i }}" name="tax[{{ $i }}]"></textarea>
+                                    </div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group">
+                                  <textarea readonly class="form-control amount{{ $i }}" id="amount{{ $i }}" title="Amount"  required></textarea>
+                                  <textarea class="hide form-control amount{{ $i }}" name="amount[{{ $i }}]"></textarea>
+                                    </div>
+                          </div>
                           <br>
+                      <?php } ?>
             </div>
             <div class="row">
             <div class="col-md-12">
@@ -222,18 +276,14 @@
 <script src="{{asset('website/dist/js/demo.js')}}"></script>
 <script src="{{asset('website/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script>
-    $(document).ready(function(){
-      $(".success").click(function(){ 
-        var i = 0;
-        $(".increment").load("raw",{var:i})
-        $(".csample").removeClass("increment");
-          // var html = $(".clone").html();
-          // $(".increment").after(html);
-      });
-    });
-    </script>
-<script>
   $(document).ready(function(){
+    $("#cal").click(function(e){
+      e.preventDefault(); 
+     for(i= 0;i<=15;i++){
+       var cal = $("")
+     }
+        return false;
+  });
         $('.select2').select2()
     $.ajaxSetup({
             headers: {
@@ -263,51 +313,57 @@
     },
 })
     });
-//     $(".product_code").change(function(){
-//       alert("c");
-//           var id= $(this).val();
-//           var card= $(this).attr('data');
-//           $.ajax({
-//     url: "/invoice/ajax2/",
-//     type: "POST",
-//     data:{id:id},
-//     success: function (data) {
-//         test = JSON.stringify(data);
-//         if(test == "something is wrong"){
-//           alert(test);
-//           return false;
-//         }
-//         $(".hsn"+card).empty();
-//         $(".mrp"+card).empty();
-//         $(".product"+card).empty();
-//         $(".tax"+card).empty();
-//         $(".hsn"+card).append(data['hsn']);
-//         $(".tax"+card).append(data['tax']);
-//         $(".mrp"+card).append(data['mrp']);
-//         $(".product"+card).append(data['product_name']);
-//     },
-// })
-//     });
-//       $(".price").keyup(function(){
-//           var id= $(this).attr('id');
-//           var card= $(this).attr('data');
-//           var quantity= $(".quantity"+card).val();
-//           var price= $(".price"+card).val();
-//           var amount = parseFloat(price * quantity);
-//           $(".amount"+card).empty();
-//           $(".amount"+card).append(amount);
-//     });
+    $(".product_code").change(function(){
+          var id= $(this).val();
+          var card= $(this).attr('data');
+          $.ajax({
+    url: "/invoice/ajax2/",
+    type: "POST",
+    data:{id:id},
+    success: function (data) {
+        test = JSON.stringify(data);
+        if(test == "something is wrong"){
+          alert(test);
+          return false;
+        }
+        $(".hsn"+card).empty();
+        $(".mrp"+card).empty();
+        $(".product"+card).empty();
+        $(".tax"+card).empty();
+        $(".hsn"+card).append(data['hsn']);
+        $(".tax"+card).append(data['tax']);
+        $(".mrp"+card).append(data['mrp']);
+        $(".product"+card).append(data['product_name']);
+    },
+})
+    });
+      $(".price").keyup(function(){
+          var card= $(this).attr('data');
+          var quantity= $(".quantity"+card).val();
+          var price= $(".price"+card).val();
+          var amount = parseFloat(price * quantity);
+          $(".amount"+card).empty();
+          $(".amount"+card).append(amount);
+    });
+    $(".quantity").keyup(function(){
+          var card= $(this).attr('data');
+          var quantity= $(".quantity"+card).val();
+          var price= $(".price"+card).val();
+          var amount = parseFloat(price * quantity);
+          $(".amount"+card).empty();
+          $(".amount"+card).append(amount);
+    });
     $("#submit_btn").click(function(e){
       e.preventDefault(); 
       if(!$('#street').val() || !$('#city').val() || !$('#phone').val()) {
                 alert('Select Client');
                 return false;
         }
-      else if(!$('#product_code1').val()) {
+      else if(!$('#product_code0').val()) {
                 alert('Atleast One Product is required');
                 return false;
         }
-       else if(!$('#quantity1').val() || !$('#price1').val()) {
+       else if(!$('#quantity0').val() || !$('#price0').val()) {
                 alert('Enter Product details correctly');
                 return false;
         }

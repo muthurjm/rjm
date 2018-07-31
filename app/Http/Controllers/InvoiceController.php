@@ -98,18 +98,25 @@ class InvoiceController extends Controller
         $client["product_code"] = $request->product_code;
         $client["quantity"] = $request->quantity;
         $client["price"] = $request->price;
-        foreach($client["product_code"] as $product_code){
-            foreach($client["price"] as $price){
-                foreach($client["quantity"] as $quantity){
-                    if($quantity != null && $price != null){
-                    $client["amount"] = $price * $quantity;
-                    }
-                    else{
-                        return back()->with("error","Quantity or Price is invalid");
-                    }
-                }
-            }
-        }
+        // foreach($client["product_code"] as $product_code){
+        //     foreach($client["price"] as $price){
+        //         foreach($client["quantity"] as $quantity){
+        //             if($product_code != null){
+        //                 if($quantity != null && $price != null){
+        //                 $client["amount"] = $price * $quantity;
+        //                 }
+        //                 else{
+        //                     // return $product_code;
+        //                     // return $price;
+        //                     return $quantity;
+        //                     // return back()->with("error","Quantity or Price is invalid");
+        //                 }
+        //             }
+        //             // break;
+        //         }
+        //         // break;
+        //     }
+        // }
         return $client;
         // return view("invoiceconfirm",compact("client"));
         // return $client["quantity"];
