@@ -91,7 +91,7 @@
                                                     <?php $j=1;  if($productpurchase['id'] == $purchase['purchase_id']){ ?>
                                                     <tr>
                                                         <td>{{ $j }}</td>
-                                                        <td>{{ $purchase['id']}}</td>
+                                                        <td>{{ $purchase['product_name']}}</td>
                                                         <td>{{ $purchase['quantity'] }}</td>
                                                     </tr>
                                                     <?php  $j = $j+1;  } ?> @endforeach

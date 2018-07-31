@@ -86,6 +86,10 @@ class PurchaseController extends Controller
     {
         $productpurchase =  Purchase::find($id);
         $purchases =  PurchaseProduct::all();
+        foreach($purchases as $purchase){
+            $all = Product::find($purchase->id);
+            $purchase['product_name'] = $all->product_name; 
+        }
         return view("admin/purchase/view",compact("purchases","productpurchase"));
     }
 
