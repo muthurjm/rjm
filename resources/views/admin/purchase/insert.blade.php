@@ -76,28 +76,8 @@
                 </fieldset>
                 <fieldset> 
                     <br><br>
-                    <h2>Step 2: Media</h2>
+                    <h2>Step 2: Product </h2>
                     <div class="row">
-                        <?php for($i =0;$i<=7;$i++){ ?>
-                        <div class="col-md-5">
-                          <div class="form-group">
-                            <label class="form-check-label" for="product_name"><b>Product Name*</b></label>
-                              <select class="form-control select2" name="product[]" id="product_name" style="width:100%;" >
-                                <option value="" selected="selected">Select Product</option>
-                                  @foreach($products as $product){
-                                  <option value="{{ $product['id'] }}" >{{ $product['product_no'] }} - {{ $product['product_name'] }}</option>
-                                  }
-                                  @endforeach
-                              </select>
-                          </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                  <label for="quantity">Quantity*</label>
-                                  <input type="text" class="form-control" id="quantity" title="Quantity" name="quantity[]" placeholder="Enter Quantity" >
-                            </div>
-                        </div>
-                        <?php } ?>
                         <div class="col-md-4">
                                 <div class="form-group">
                                   <label class="form-check-label" for="product_name"><b>Product Name*</b></label>
@@ -119,28 +99,9 @@
                                 <div class="col-md-4">
                                   <button style="margin-top:30px;" class="btn btn-success success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
                                 </div>
-                        <div class="increment">
+                            </div>
+                        <div class="csample increment">
                       </div>
-                    <div  class="clone hide">
-                                <div id="remove">
-                              <div class="form-group">
-                                <label class="form-check-label" for="product_name"><b>Product Name*</b></label><br>
-                                  <select class="form-control" name="product[]" id="product_name" style="width:360px;" >
-                                        <option value="" selected="selected">Select Product</option>
-                                        @foreach($products as $product){
-                                        <option value="{{ $product['id'] }}" >{{ $product['product_no'] }} - {{ $product['product_name'] }}</option>
-                                        }
-                                        @endforeach
-                                  </select>
-                              </div>
-                                <div class="form-group" style="margin-top:-85px;margin-left: 370px;">
-                                      <label for="quantity">Quantity*</label>
-                                      <input type="text" class="form-control" id="quantity"  style="width:360px;" title="Quantity" name="quantity[]" placeholder="Enter Quantity">
-                                </div>
-                                <button style="margin-top:-103px;margin-left: 740px;" class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-plus"></i>Remove</button>
-                          </div>
-                        </div>
-                        </div>
                     <br>
                     <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
                     <input type="submit" name="submit" class="submit btn btn-success" value="Submit" id="submit_data" />
@@ -185,8 +146,9 @@
                .html(percent+"%");		
        }                                    
         $(".success").click(function(){ 
-          var html = $(".clone").html();
-          $(".increment").after(html);
+            var i =0;
+            $(".increment").load("/raw")
+             $(".csample").removeClass("increment");
       });
       $("body").on("click",".btn-danger",function(){ 
           $(this).parents("#remove").remove();

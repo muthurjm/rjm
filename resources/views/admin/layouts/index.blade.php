@@ -92,31 +92,35 @@
     var eid1 = str.substring(0, str.lastIndexOf("/") + 0);
     var eid2 = eid1.substring(0, eid1.lastIndexOf("/") + 0);
     var eid3 = eid2.substring(eid2.lastIndexOf("/") + 1);
-                 if(id == "passes" || sid1 == "passes" || eid3 == "passes"){
-                          $(".load").removeClass("active");
-                          $("#passes").addClass("active");
-                     }
-                     else if(id == "client"){
+                      if(id == "client"|| sid1 == "client" || eid3 == "client"){
                           $(".load").removeClass("active");
                           $("#client").addClass("active");
                      }
-                     else if(id == "product_stock"){
+                     else if(id == "product_stock"|| sid1 == "product_stock" || eid3 == "product_stock"){
                           $(".load").removeClass("active");
                           $("#product_stock").addClass("active");
                      }
-                    else if(id == "product"){ 
+                    else if(id == "product"|| sid1 == "product" || eid3 == "product"){ 
                         $(".load").removeClass("active"); 
                         $("#product").addClass("active");
                     }
-                    else if(id == "hsn"){ 
+                    else if(id == "invoice"|| sid1 == "invoice" || eid3 == "invoice"){ 
+                        $(".load").removeClass("active"); 
+                        $("#invoice").addClass("active");
+                    }
+                    else if(id == "purchase"|| sid1 == "purchase" || eid3 == "purchase"){ 
+                        $(".load").removeClass("active"); 
+                        $("#purchase").addClass("active");
+                    }
+                    else if(id == "hsn"|| sid1 == "hsn" || eid3 == "hsn"){ 
                         $(".load").removeClass("active"); 
                         $("#hsn").addClass("active");
                     }
-                    else if(id == "emptyproduct"){ 
+                    else if(id == "emptyproduct"|| sid1 == "emptyproduct" || eid3 == "emptyproduct"){ 
                         $(".load").removeClass("active"); 
                         $("#emptyproduct").addClass("active");
                     }
-                    else if(id == "taxpay"){ 
+                    else if(id == "taxpay"|| sid1 == "taxpay" || eid3 == "taxpay"){ 
                         $(".load").removeClass("active"); 
                         $("#taxpay").addClass("active");
                     }
