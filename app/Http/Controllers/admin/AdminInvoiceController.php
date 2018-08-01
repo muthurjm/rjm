@@ -4,6 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Invoices;
+use App\Product;
+use App\InvoicesPurchase;
+use DB;
 
 class AdminInvoiceController extends Controller
 {
@@ -14,8 +18,11 @@ class AdminInvoiceController extends Controller
      */
     public function index()
     {
-        // return view("admin/invoice/index");
-        // return $dataTable->render('admin/invoice/index');
+        $invoice = Invoices::all();
+        foreach ($invoice as $invoices){
+            $invoices["count"] = DB::table('invoices_purchase')->where("invoice_id", '=', $invoices->id)->count();
+        }
+        return view("admin/invoice/index",compact("invoice","products"));
     }
 
     /**
@@ -47,7 +54,10 @@ class AdminInvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        // return $id;
+        $invoice =  Invoices::find($id);
+        $products =  InvoicesPurchase::all();
+        return view("admin/invoice/view",compact("invoice","products"));     
     }
 
     /**

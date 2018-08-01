@@ -68,8 +68,8 @@
                   <input type="text" class="form-control" id="mrp"  value="{{ $product['mrp'] }}"  title="MRP" name="mrp" placeholder="Enter MRP" required>
                     </div>
                     <div class="form-group">
-                      <label for="Sales">Sales*</label>
-                      <input type="text" class="form-control"  value="{{ $product['sales'] }}"  id="sales" title="Sales" name="sales" placeholder="Enter Sales" required>
+                      <label for="intimate">Intimate Count*</label>
+                      <input type="text" class="form-control"  value="{{ $product['target'] }}"  id="intimate" title="Intimate Count" name="target" placeholder="Enter Intimate Count" required>
                         </div>
                     <div class="form-group">
                         <label for="invoice_price">Invoice Price*</label>

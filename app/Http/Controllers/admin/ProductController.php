@@ -128,7 +128,7 @@ class ProductController extends Controller
             'hsn_id' => $request->hsn_code,
             'product_name' => $request->name,
             'mrp' => $request->mrp,
-            'sales' => $request->sales,
+            'target' => $request->target,
             'invoice_price' => $request->invoice_price,
         ));
         return redirect('product/')->with('success', 'Product has been  updated sucessfully');

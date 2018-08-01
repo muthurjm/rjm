@@ -52,7 +52,7 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        return $_POST;
+        // return $_POST;
         $purchase = new Purchase();
         $purchase->invoice_number = $request->invoice_number;
         $purchase->invoice_date = $request->invoice_date;
@@ -68,13 +68,13 @@ class PurchaseController extends Controller
             $purchase_product[$key1]->purchase_id = $id;
             $purchase_product[$key1]->product_id = $request->product[$key1];
             $purchase_product[$key1]->quantity = $value1;
-            if($value1 != null && $value2 != null){
+            if($value1 != null && $request->product[$key1] != null){
             $purchase_product[$key1]->save();
             $product = DB::table('product')
-                        ->where('id', '=',  $value2)
+                        ->where('id', '=',  $request->product[$key1])
                         ->get();
             $stock = $value1 + $product[0]->stock;
-            Product::where('id', $value2)->update(array(
+            Product::where('id', $request->product[$key1])->update(array(
             'stock' => $stock,
         ));
         }
@@ -93,9 +93,10 @@ class PurchaseController extends Controller
         $productpurchase =  Purchase::find($id);
         $purchases =  PurchaseProduct::all();
         foreach($purchases as $purchase){
-            $all = Product::find($purchase->id);
-            $purchase['product_name'] = $all->product_name; 
+            $all = Product::find($purchase->product_id);
+            $purchase['product_name'] = $all['product_name']; 
         }
+        // return $purchases;
         return view("admin/purchase/view",compact("purchases","productpurchase"));
     }
 

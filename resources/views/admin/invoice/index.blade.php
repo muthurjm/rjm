@@ -1,4 +1,4 @@
-{{-- <?php $title = "Products"; ?> 
+<?php $title = "Invoices"; ?> 
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}"> 
 @endpush 
@@ -22,7 +22,7 @@
         @endif
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Empty Product</h1>
+          <h1>Invoices</h1>
         </div>
       </div>
     </div>
@@ -40,15 +40,34 @@
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Product No</th>
-                  <th>Product Name</th>
-                  <th>Stock</th>
-                  <th>Intimate Value</th>
-                  <th>Value</th>
+                  <th>Invoices No</th>
+                  <th> Date</th>
+                  <th>Client Name</th>
+                  <th>Tin No</th>
+                  <th>Phone Number</th>
+                  <th>Count</th>
+                  <th>Sub Total</th>
+                  <th>Grand Total</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-               
+                <?php $i=1 ?> @foreach($invoice as $invoices)
+                <tr>
+                  <td>{{ $i }}</td>
+                  <td>{{ $invoices['invoice_number'] }}</td>
+                  <td>{{ $invoices['invoice_date'] }}</td>
+                  <td>{{ $invoices['name'] }}</td>
+                  <td>{{ $invoices['tin'] }} </td>
+                  <td>{{ $invoices['phone'] }} </td>
+                  <td>{{ $invoices['count'] }}</td>
+                  <td>{{ $invoices['sub_total'] }}</td>
+                  <td>{{ $invoices['grand_total'] }}</td>
+                  <td>
+                    <a href="{{action('admin\AdminInvoiceController@show', $invoices['id'])}}"> <button  class="btn btn-info " type="submit"><i class="fa fa-eye"></i></button></a>
+                 </td>
+                </tr>
+                <?php $i = $i+1 ?> @endforeach
               </tbody>
             </table>
           </div>
@@ -73,23 +92,4 @@
     });
 
 </script>
-@endpush --}}
-
-
-@extends('datatables.html.template')
-
-@section('demo')
-    {!! $html->table() !!}
-@endsection
- 
-@section('controller')
-@include('datatables.html.docs.columns-controller')
-@endsection
-
-@section('view')
-@include('datatables.html.docs.view')
-@stop
-
-@section('scripts')
-    {!! $html->scripts() !!} 
-@endsection
+@endpush 

@@ -65,7 +65,7 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a href="{{ url('admin/invoice') }}" id="hsn" class="nav-link load">
+                            <a href="{{ url('admin/invoice') }}" id="invoice" class="nav-link load">
                     <i class="nav-icon fa fa-file"></i>
                       <p>
                         Invoice  
@@ -74,7 +74,7 @@
                     </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('purchase/') }}" id="hsn" class="nav-link load">
+                            <a href="{{ url('purchase/') }}" id="purchase" class="nav-link load">
                     <i class="nav-icon fa fa-angle-double-down"></i>
                       <p>
                         Purchase
