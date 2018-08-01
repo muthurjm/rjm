@@ -23,6 +23,7 @@ Route::resource('/product', 'admin\ProductController');
 Route::resource('/hsn', 'admin\HsnController');
 Route::resource('/purchase', 'admin\PurchaseController');
 Route::get('/raw', 'admin\PurchaseController@ajax');
+Route::resource('/admin/invoice', 'admin\AdminInvoiceController');
 Route::resource('/emptyproduct', 'admin\EmptyProductController');
 Route::resource('/taxpay', 'admin\TaxPayController');
 Route::post('/taxpay/ajax', 'admin\TaxPayController@ajax');
