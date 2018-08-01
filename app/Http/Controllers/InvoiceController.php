@@ -80,6 +80,15 @@ class InvoiceController extends Controller
         return view("raw",compact("products"));
     }
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function print()
+    {
+       return view("printinvoice");
+    }
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
