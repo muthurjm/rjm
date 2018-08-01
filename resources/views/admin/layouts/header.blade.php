@@ -63,12 +63,23 @@
                       </p>
                     </a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a href="{{ url('product_stock/') }}" id="product_stock" class="nav-link load">
-                    <i class="nav-icon fa fa-product-hunt"></i>
+                            <a href="{{ url('admin/invoice') }}" id="invoice" class="nav-link load">
+                    <i class="nav-icon fa fa-file"></i>
                       <p>
-                        Product Stock
-                      </p>
+                        Invoice  
+                   </p>
+
+                    </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('purchase/') }}" id="purchase" class="nav-link load">
+                    <i class="nav-icon fa fa-angle-double-down"></i>
+                      <p>
+                        Purchase
+                   </p>
+
                     </a>
                         </li>
                         <li class="nav-item">
@@ -81,12 +92,11 @@
                     </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('purchase/') }}" id="hsn" class="nav-link load">
-                    <i class="nav-icon fa fa-angle-double-down"></i>
+                            <a href="{{ url('product_stock/') }}" id="product_stock" class="nav-link load">
+                    <i class="nav-icon fa fa-product-hunt"></i>
                       <p>
-                        Purchase
-                   </p>
-
+                        Product Stock
+                      </p>
                     </a>
                         </li>
                         <li class="nav-item">

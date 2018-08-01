@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Purchase;
+use App\Invoices;
+use App\Product;
+use App\InvoicesPurchase;
 use DB;
 
-class TaxPayController extends Controller
+class AdminInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,11 @@ class TaxPayController extends Controller
      */
     public function index()
     {
-        return view("admin/taxpay/index");
+        $invoice = Invoices::all();
+        foreach ($invoice as $invoices){
+            $invoices["count"] = DB::table('invoices_purchase')->where("invoice_id", '=', $invoices->id)->count();
+        }
+        return view("admin/invoice/index",compact("invoice","products"));
     }
 
     /**
@@ -39,30 +45,6 @@ class TaxPayController extends Controller
     {
         //
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function ajax(Request $request)
-    {
-         $data = $request->month;
-        $filterdata = [];
-        $first_day_this_month = date($data[1] . "-" . $data[0] . "-01");
-        $last_day_this_month = date($data[1] . "-" . $data[0] . "-t");
-        $purchases = DB::table('purchase')
-            ->whereBetween('invoice_date', [$first_day_this_month, $last_day_this_month])
-            ->orderBy('invoice_date', 'desc')
-            ->get();
-        // foreach ($purchases as $purchase) {
-        //     $user_id = $purchase->user_id;
-        //     $user = User::find($user_id);
-        //     $user_name = $user->name;
-        //     $purchase->user_name = $user_name;
-        // }
-        return $purchases;
-    }
 
     /**
      * Display the specified resource.
@@ -72,7 +54,10 @@ class TaxPayController extends Controller
      */
     public function show($id)
     {
-        //
+        // return $id;
+        $invoice =  Invoices::find($id);
+        $products =  InvoicesPurchase::all();
+        return view("admin/invoice/view",compact("invoice","products"));     
     }
 
     /**

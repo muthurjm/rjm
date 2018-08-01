@@ -22,7 +22,17 @@ class PurchaseController extends Controller
         $purchases = Purchase::all();
         return view('admin/purchase/index',compact('purchases'));
     }
-
+         /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ajax(Request $request)
+    {
+        $products = Product::all();
+        return view("admin/purchase/raw",compact("products"));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -54,23 +64,19 @@ class PurchaseController extends Controller
         $id = $purchase->id;
         $product = new Product();
         foreach ($request->quantity as $key1 => $value1) {
-            foreach ($request->product as $key2 => $value2) {
             $purchase_product[$key1] = new PurchaseProduct();
             $purchase_product[$key1]->purchase_id = $id;
-            $purchase_product[$key1]->product_id = $value2;
+            $purchase_product[$key1]->product_id = $request->product[$key1];
             $purchase_product[$key1]->quantity = $value1;
-            if($value1 != null && $value2 != null){
+            if($value1 != null && $request->product[$key1] != null){
             $purchase_product[$key1]->save();
             $product = DB::table('product')
-                        ->where('id', '=',  $value2)
+                        ->where('id', '=',  $request->product[$key1])
                         ->get();
             $stock = $value1 + $product[0]->stock;
-            Product::where('id', $value2)->update(array(
+            Product::where('id', $request->product[$key1])->update(array(
             'stock' => $stock,
         ));
-        
-            }
-            break;
         }
     }
             return back()->with("success","Stock Added Sucessfully");
@@ -87,9 +93,10 @@ class PurchaseController extends Controller
         $productpurchase =  Purchase::find($id);
         $purchases =  PurchaseProduct::all();
         foreach($purchases as $purchase){
-            $all = Product::find($purchase->id);
-            $purchase['product_name'] = $all->product_name; 
+            $all = Product::find($purchase->product_id);
+            $purchase['product_name'] = $all['product_name']; 
         }
+        // return $purchases;
         return view("admin/purchase/view",compact("purchases","productpurchase"));
     }
 

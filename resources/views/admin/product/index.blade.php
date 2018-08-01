@@ -49,7 +49,7 @@
                   <th>Price(MRP)</th>
                   <th>Tax</th>
                   <th>Invoice Price(GST)</th>
-                  <th>Sales</th>
+                  <th>Target Number</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -63,7 +63,7 @@
                   <td>Rs {{ $product['mrp'] }}/- </td>
                   <td>{{ $product['tax'] }}%</td>
                   <td>{{ $product['invoice_price'] }}</td>
-                  <td>{{ $product['sales'] }}</td>
+                  <td>{{ $product['target'] }}</td>
                   <td>
                       <a href="{{action('admin\ProductController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
                  </td>

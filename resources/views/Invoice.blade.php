@@ -81,8 +81,8 @@
                 <div class="col-md-5">
               <div class="form-group">
                 <label for="code">Bill No*</label>
-              <input type="text" class="form-control" id="client_name" value="{{ $bill_no }}"  disabled title="Client Name">
-              <input type="hidden" name="client_name" value="{{ $bill_no }}">
+              <input type="text" class="form-control" id="invoice_number" value="{{ $bill_no }}"  disabled title="Client Name">
+              <input type="hidden" name="invoice_number" value="{{ $bill_no }}">
               </div>
                 </div>
                 <div class="col-md-5">
@@ -98,72 +98,83 @@
                 </div>
               </div>
               <div class="col-md-5">
+                <div class="form-group">
+                  <label for="name">Name*</label>
+                  <textarea  readonly class="form-control name" id="name" title="Name" placeholder="Select Client" required></textarea>
+                  <textarea class="hide form-control name"  name="name"></textarea>
+                    </div>
+                  </div>
+              <div class="col-md-5">
               <div class="form-group">
                 <label for="street">Street*</label>
                 <textarea  readonly class="form-control street  " id="street" title="Street" placeholder="Select Client" required></textarea>
                 <textarea class="hide form-control street"  name="street"></textarea>
                   </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
               <div class="form-group">
                   <label for="city">City*</label>
                   <textarea  readonly class="form-control city" id="city" title="City"  placeholder="Select Client" required></textarea>
                   <textarea class="hide form-control city" name="city"></textarea>
                     </div>
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-4">
                 <div class="form-group">
                     <label for="tin">Tin Number*</label>
                     <textarea readonly class="form-control tin" id="tin" title="Street" placeholder="Select Client" required></textarea>
                     <textarea class="hide form-control tin" name="tin"></textarea>
                       </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                   <div class="form-group">
                       <label for="Phone">Phone Number*</label>
                       <textarea readonly class="form-control phone" id="phone" title="Phone" placeholder="Select Client" required></textarea>
                       <textarea class="hide form-control phone" name="phone"></textarea>
                         </div>
                       </div>
-                      <hr>
             </div>
-            
-
+            <hr>
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="total">Sub Total*</label>
-                        <textarea readonly class="form-control total" id="total" title="Sub Total" placeholder="Select product" required></textarea>
-                        <textarea class="hide form-control total"  name="total"></textarea>
+                        <textarea readonly class="form-control total" id="total" title="Sub Total" placeholder="Click Calculate" required></textarea>
+                        <textarea class="hide form-control total"  name="subtotal"></textarea>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
                         <label for="gst12">Gst 12%*</label>
-                        <textarea readonly class="form-control gst12" id="gst12" title="GST 12%" placeholder="Select product" required></textarea>
+                        <textarea readonly class="form-control gst12" id="gst12" title="GST 12%" placeholder="Click Calculate" required></textarea>
                         <textarea class="hide form-control gst12"  name="gst12"></textarea>
                   </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="gst18">Gst 18%*</label>
-                        <textarea readonly class="form-control gst18" id="gst18" title="GST 18%" placeholder="Select product" required></textarea>
-                        <textarea class="hide form-control gst18"  name="total"></textarea>
+                        <textarea readonly class="form-control gst18" id="gst18" title="GST 18%" placeholder="Click Calculate" required></textarea>
+                        <textarea class="hide form-control gst18"  name="gst18"></textarea>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
                         <label for="gst28">Gst 28%*</label>
-                        <textarea readonly class="form-control gst28" id="gst28" title="GST 28%" placeholder="Select product" required></textarea>
+                        <textarea readonly class="form-control gst28" id="gst28" title="GST 28%" placeholder="Click Calculate" required></textarea>
                         <textarea class="hide form-control gst28"  name="gst28"></textarea>
                   </div>
                 </div> 
                 <div class="col-md-2">
-                    <button style="margin-top:34px;" type="submit" id="calculate" class="btn btn-primary">Calculate </button>
+                  <div class="form-group">
+                      <label for="grandtotal">Grand Total*</label>
+                      <textarea readonly class="form-control grandtotal" id="grandtotal" title="Grand Total" placeholder="Click Calculate" required></textarea>
+                      <textarea class="hide form-control grandtotal"  name="grandtotal"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                    <button style="margin-top:34px;"  id="cal" class="btn btn-primary">Calculate </button>
                 </div> 
             </div>
-
-
+            <hr>
             <div class="row">
               <div class="col-md-2">
                  <label><b>Product Code*</b></label>
@@ -225,12 +236,12 @@
                           </div>
                           <div class="col-md-1">
                               <div class="form-group">
-                                  <input type="text" class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
+                                  <input type="text"  class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
                                     </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group">
-                              <input type="text" class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[{{ $i }}]">
+                              <input type="text"  class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[{{ $i }}]">
                                     </div>
                           </div>
                           <div class="col-md-1">
@@ -279,11 +290,64 @@
   $(document).ready(function(){
     $("#cal").click(function(e){
       e.preventDefault(); 
+      $(".gst12").empty();
+     $(".gst18").empty();
+     $(".gst28").empty();
+     $(".total").empty();
+     $(".grandtotal").empty();
+      var gst12 = 0;
+       var gst18 = 0;
+       var gst28 = 0;
+       var subtotal = 0;
+       var amount = 0;
+       var gst = 0;
      for(i= 0;i<=15;i++){
-       var cal = $("")
+        var gst = $("#tax"+i).val();
+        if($("#amount"+i).val()){
+          var amount = $("#amount"+i).val();
+       subtotal = parseFloat(amount) + subtotal;
+        }
+       if(gst == 12){
+         gst12 = gst12+parseFloat(amount);
+       }else if(gst == 18){
+         gst18 = gst18+parseFloat(amount);
+       }
+       else if(gst == 28){
+         gst28 = gst28+parseFloat(amount);
+       } 
      }
-        return false;
+    var grandtotal = parseFloat(subtotal+gst18+gst12+gst28);
+     $(".total").append(subtotal);
+     $(".gst12").append(gst12*0.12);
+     $(".gst18").append(gst18*0.18);
+     $(".gst28").append(gst28*0.28);
+     $(".grandtotal").append(parseFloat(grandtotal));
+     
   });
+  $("#submit_btn").click(function(){
+      // e.preventDefault(); 
+      if(!$('#street').val() || !$('#city').val() || !$('#phone').val()) {
+                alert('Select Client');
+                return false;
+        }
+      else if(!$('#product_code0').val()) {
+                alert('Atleast One Product is required');
+                return false;
+        }
+       else if(!$('#quantity0').val() || !$('#price0').val()) {
+                alert('Enter Product details correctly');
+                return false;
+        }
+        else{
+          if(confirm('Are You want to print the Invoice')){
+          $("#cal").trigger("click");
+          $('#formId').submit();
+          }
+          else{
+            return false;
+          }
+        }
+    });
         $('.select2').select2()
     $.ajaxSetup({
             headers: {
@@ -306,7 +370,9 @@
         $( ".city" ).empty();
         $( ".tin" ).empty();
         $( ".phone" ).empty();
+        $( ".name" ).empty();
         $(".street").append(data['street']);
+        $(".name").append(data['name']);
         $(".city").append(data['city']);
         $(".tin").append(data['tin']);
         $(".phone").append(data['phone1']);
@@ -352,24 +418,6 @@
           var amount = parseFloat(price * quantity);
           $(".amount"+card).empty();
           $(".amount"+card).append(amount);
-    });
-    $("#submit_btn").click(function(e){
-      e.preventDefault(); 
-      if(!$('#street').val() || !$('#city').val() || !$('#phone').val()) {
-                alert('Select Client');
-                return false;
-        }
-      else if(!$('#product_code0').val()) {
-                alert('Atleast One Product is required');
-                return false;
-        }
-       else if(!$('#quantity0').val() || !$('#price0').val()) {
-                alert('Enter Product details correctly');
-                return false;
-        }
-        else{
-          $('#formid').trigger('submit');
-        }
     });
   });
 </script>

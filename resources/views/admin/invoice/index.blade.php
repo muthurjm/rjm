@@ -1,15 +1,6 @@
-<?php $title = "products"; ?> 
+<?php $title = "Invoices"; ?> 
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}"> 
-<style>
-  #example1_filter,
-  #example2_filter {
-    margin-left: 330px !important;
-    width: 50%;
-  }
-</style>
-
-
 @endpush 
 @section('content')
 <!-- Main content -->
@@ -31,13 +22,7 @@
         @endif
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Purchase</h1>
-        </div>
-
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <a href="{{ action('admin\PurchaseController@create') }}" class="btn btn-flat btn-custom btn1"><i class="fa fa-plus"></i> Add Purchase Items</a>
-          </ol>
+          <h1>Invoices</h1>
         </div>
       </div>
     </div>
@@ -55,30 +40,38 @@
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Invoice No</th>
-                  <th>Invoice Date</th>
-                  <th>Invoice Amount</th>
-                  <th>Tax</th>
-                  <th>SGST</th>
-                  <th>CGST</th>
+                  <th>Invoices No</th>
+                  <th> Date</th>
+                  <th>Client Name</th>
+                  <th>Tin No</th>
+                  <th>Phone Number</th>
+                  <th>Count</th>
+                  <th>Sub Total</th>
+                  <th>Grand Total</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <?php $i=1 ?> @foreach($purchases as $purchase)
+                <?php $i=1 ?> @foreach($invoice as $invoices)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td><a href="{{action('admin\PurchaseController@show',  $purchase['id']) }}">{{ $purchase['invoice_number'] }}</a></td>
-                  <td>{{ $purchase['invoice_date'] }}</td>
-                  <td>{{ $purchase['invoice_amount'] }}</td>
-                  <td>{{ $purchase['taxable'] }} </td>
-                  <td>{{ $purchase['sgst'] }}</td>
-                  <td>{{ $purchase['cgst'] }}</td>
+                  <td>{{ $invoices['invoice_number'] }}</td>
+                  <td>{{ $invoices['invoice_date'] }}</td>
+                  <td>{{ $invoices['name'] }}</td>
+                  <td>{{ $invoices['tin'] }} </td>
+                  <td>{{ $invoices['phone'] }} </td>
+                  <td>{{ $invoices['count'] }}</td>
+                  <td>{{ $invoices['sub_total'] }}</td>
+                  <td>{{ $invoices['grand_total'] }}</td>
+                  <td>
+                    <a href="{{action('admin\AdminInvoiceController@show', $invoices['id'])}}"> <button  class="btn btn-info " type="submit"><i class="fa fa-eye"></i></button></a>
+                 </td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach
               </tbody>
             </table>
           </div>
-          <!-- /.card-body --> 
+          <!-- /.card-body -->
         </div>
         <!-- /.card -->
       </div>
@@ -93,22 +86,10 @@
 
 @stop @push('js')
 <script src="{{asset('website/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script>
   $(document).ready(function(){
-      $("#example1").DataTable({
-        dom: 'lfBrtip',
-            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            buttons: [
-                'excelHtml5',
-                'pdfHtml5'
-            ]
-      });   
+      $("#example1").DataTable();   
     });
 
 </script>
-@endpush
+@endpush 
