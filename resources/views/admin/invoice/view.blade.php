@@ -113,6 +113,18 @@
                                         <input readonly type="text" class="form-control" value="{{ $invoice['cgst_14'] }}"  id="cgst" title="CGST" name="cgst" placeholder="Enter CGST" required>
                                     </div>
                                   </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="subtotal">Sub Total*</label>
+                                        <input readonly type="text" class="form-control" value="{{ $invoice['sub_total'] }}"  id="subtotal" title="Subtotal" name="subtotal" placeholder="Enter Subtotal" required>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="grandtotal">Grand Total*</label>
+                                        <input readonly type="text" class="form-control" value="{{ $invoice['grand_total'] }}"  id="grandtotal" title="Grandtotal" placeholder="Enter CGST" required>
+                                    </div>
+                                  </div>
                 
             </div>
                 <div class="row">

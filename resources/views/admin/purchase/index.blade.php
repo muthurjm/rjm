@@ -1,4 +1,4 @@
-<?php $title = "products"; ?> 
+<?php $title = "Purchase"; ?> 
 @extends('../admin/layouts/index') @push('css')
 <link rel="stylesheet" href="{{asset('website/plugins/datatables/jquery.dataTables.min.css')}}"> 
 <style>

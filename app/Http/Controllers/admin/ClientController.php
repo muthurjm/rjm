@@ -16,7 +16,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::orderBy('id', 'DESC')->get();
+        // $clients  =array_reverse($clients,true);
         return view('admin/client/index',compact('clients'));
     }
 

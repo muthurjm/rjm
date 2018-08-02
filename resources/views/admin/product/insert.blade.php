@@ -52,7 +52,7 @@
               </div>
               <div class="form-group">
                   <label for="Client Name">Product Name*</label>
-                  <input type="text" class="form-control" id="product_name" title="Product Name" name="name" placeholder="Enter Product Name" required>
+                  <input type="text" class="form-control" id="product_name" title="Product Name" name="product_name" placeholder="Enter Product Name" required>
                     </div>
               <div class="form-group">
                 <label for="mrp">MRP*</label>
