@@ -56,7 +56,7 @@
                                         <div class="col-md-3">
                                     <div class="form-group">
                                       <label for="sgst">TIN No*</label>
-                                      <input readonly type="text" class="form-control" value="{{ $invoice['tin'] }}"  id="sgst" title="TIN No" name="sgst" placeholder="Enter SGST" required>
+                                      <input readonly type="text" class="form-control" value="{{ $invoice['tin'] }}"  id="sgst" title="TIN No" name="sgst" placeholder="TIN number not found" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -73,8 +73,8 @@
                                                                     </div>
                                             <div class="col-md-3">
                                         <div class="form-group">
-                                          <label for="sgst">Phone No*</label>
-                                          <input readonly type="text" class="form-control" value="{{ $invoice['tin'] }}"  id="sgst" title="Phone Number">
+                                          <label for="phone">Phone No*</label>
+                                          <input readonly type="text" class="form-control" value="{{ $invoice['phone'] }}"  id="phone" title="Phone Number">
                                         </div>
                                     </div>
                                 <div class="col-md-2">
