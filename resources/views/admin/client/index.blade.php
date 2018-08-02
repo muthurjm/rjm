@@ -46,9 +46,13 @@
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Code</th>
-                  <th>Type</th>
-                  <th>Discount</th>
+                  <th>Client Code</th>
+                  <th>Name</th>
+                  <th>Street</th>
+                  <th>City</th>
+                  <th>TIN No</th>
+                  <th>Phone </th>
+                  <th>Phone </th>
                   {{--
                   <th>Expiry Date</th> --}}
                   <th>Action</th>
@@ -58,9 +62,13 @@
                 <?php $i=1 ?> @foreach($clients as $client)
                 <tr>
                   <td>{{ $i }}</td>
+                  <td>{{ $client['client_no'] }}</td>
                   <td>{{ $client['name'] }}</td>
                   <td>{{ $client['street'] }}</td>
                   <td>{{ $client['city'] }}</td>
+                  <td>{{ $client['tin'] }}</td>
+                  <td>{{ $client['phone1'] }}</td>
+                  <td>{{ $client['phone2'] }}</td>
                   <td>
                     <form action="{{action('admin\ClientController@destroy', $client['id'])}}" method="post">
                       @csrf
@@ -69,7 +77,6 @@
                       <button class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this clients?')) { return false }"
                         type="submit"><i class='fa fa-trash-o'></i></button>
                     </form>
-                    <a href="{{action( 'admin\ClientController@show', $client[ 'id'])}}"> <button  class="btn btn-info info1" type="submit"><i class="fa fa-eye"></i></button></a>
                   </td>
                 </tr>
 

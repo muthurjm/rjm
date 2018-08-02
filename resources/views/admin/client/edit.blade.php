@@ -6,17 +6,6 @@
   <!-- Content Header (Page header) --> 
   <section class="content-header">
     <div class="container-fluid">
-      {{-- @if ($message = Session::get('success'))
-      <div class="alert  alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <p>{{ $message }}</p>
-        @endif
-        @if ($message = Session::get('error'))
-        <div class="alert  alert-danger">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <p>{{ $message }}</p>
-          @endif --}}
-          
       </div>
       <div class="row md-1">
         <div class="col-sm-10 ">
@@ -37,7 +26,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="code">Client No*</label>
-              <input type="text" class="form-control" value="{{ $client['client_name'] }}"  disabled title="Client Name">
+              <input type="text" class="form-control" value="{{ $client['client_no'] }}"  disabled title="Client Name">
               </div>
               <div class="form-group">
                   <label for="Client Name">Client Name*</label>

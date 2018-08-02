@@ -67,7 +67,7 @@
                       <form action="{{action('admin\AdminInvoiceController@destroy', $invoices['id'])}}" method="post">
                           @csrf
                           <a href="{{action('admin\AdminInvoiceController@edit', $invoices['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
-                          <a href="{{action('admin\AdminInvoiceController@show', $invoices['id'])}}"> <button  class="btn btn-info " type="submit"><i class="fa fa-eye"></i></button></a>
+                          <a href="{{action('admin\AdminInvoiceController@show', $invoices['id'])}}" title='View' class='btn btn-flat btn-info'><i class="fa fa-eye"></i></button></a>
                           <input name="_method" type="hidden" value="DELETE">
                           <button style="margin-top: -67px;margin-left: 90px;" class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this Invoice  ?')) { return false }"
                             type="submit"><i class='fa fa-trash-o'></i></button>

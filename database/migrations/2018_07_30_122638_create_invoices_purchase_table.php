@@ -16,7 +16,7 @@ class CreateInvoicesPurchaseTable extends Migration
         Schema::create('invoices_purchase', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('invoice_id');
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
             $table->string('product_code');
             // $table->foreign('product_code')->references('id')->on('product');
             $table->string('hsn');
