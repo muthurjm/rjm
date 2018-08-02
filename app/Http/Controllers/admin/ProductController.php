@@ -19,14 +19,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        foreach ($products as $product) {
-            $hsn_id = $product->hsn_id;
-            $hsn = Hsn::find($hsn_id);
-            $hsn_code = $hsn->hsn_code;
-            $product['hsn_code'] = $hsn_code;
-            $tax = $hsn->tax;
-            $product['tax'] = $tax;
-        }
+        // foreach ($products as $product) {
+        //     $hsn_id = $product->hsn_id;
+        //     $hsn = Hsn::find($hsn_id);
+        //     $hsn_code = $hsn->hsn_code;
+        //     $product['hsn_code'] = $hsn_code;
+        //     $tax = $hsn->tax;
+        //     $product['tax'] = $tax;
+        // }
         return view('admin/product/index',compact('products'));
     }
 
@@ -70,6 +70,7 @@ class ProductController extends Controller
         $product->product_name = $request->name;
         $product->mrp = $request->mrp;
         $product->target = $request->target;
+        $product->hsn = $hsn->hsn_code;
         $product->tax = $hsn->tax;
         $product->invoice_price = $request->invoice_price;
         if($product->save()){
@@ -142,6 +143,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hsn = Product::find($id);
+        if($hsn->delete()){
+            return back()->with("success","Deleted Sucessfully");
+        }
     }
 }

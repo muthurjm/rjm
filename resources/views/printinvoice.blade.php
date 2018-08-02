@@ -1,87 +1,250 @@
 
 <!DOCTYPE html>
-<html lang="en" > 
-	<head>
-		<meta charset="utf-8">
-		<title>Invoice</title>
-		<link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-        <link rel="stylesheet" href="{{asset('js/style.css')}}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="{{asset('js/jquery.printPage.js')}}"></script>
-	</head>
-	<body>
-		<header>
-			<h1>Invoice</h1>
-			<address contenteditable>
-				<p>Jonathan Neal</p>
-				<p>101 E. Chapman Ave<br>Orange, CA 92866</p>
-				<p>(800) 555-1234</p>
-			</address>
-			<span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span>
-		</header>
-		<article>
-			<h1>Recipient</h1>
-			<address contenteditable>
-				<p>Some Company<br>c/o Some Guy</p>
-			</address>
-			<table class="meta">
-				<tr>
-					<th><span contenteditable>Invoice #</span></th>
-					<td><span contenteditable>101138</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Date</span></th>
-					<td><span contenteditable>January 1, 2012</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Amount Due</span></th>
-					<td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
-				</tr>
-			</table>
-			<table class="inventory">
-				<thead>
-					<tr>
-						<th><span contenteditable>Item</span></th>
-						<th><span contenteditable>Description</span></th>
-						<th><span contenteditable>Rate</span></th>
-						<th><span contenteditable>Quantity</span></th>
-						<th><span contenteditable>Price</span></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td>
-						<td><span contenteditable>Experience Review</span></td>
-						<td><span data-prefix>$</span><span contenteditable>150.00</span></td>
-						<td><span contenteditable>4</span></td>
-						<td><span data-prefix>$</span><span>600.00</span></td>
-					</tr>
-				</tbody>
-			</table>
-			<a class="add">+</a>
-			<table class="balance">
-				<tr>
-					<th><span contenteditable>Total</span></th>
-					<td><span data-prefix>$</span><span>600.00</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Amount Paid</span></th>
-					<td><span data-prefix>$</span><span contenteditable>0.00</span></td>
-				</tr>
-				<tr>
-					<th><span contenteditable>Balance Due</span></th>
-					<td><span data-prefix>$</span><span>600.00</span></td>
-				</tr>
-			</table>
-		</article>
-		<aside>
-			<h1><span contenteditable>Additional Notes</span></h1>
-			<div contenteditable>
-				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
-			</div>
-		</aside>
-    </body>
-</html>
-</body>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Simple Invoice - Bootsnipp.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style type="text/css">
+    .invoice-title h2, .invoice-title h3 {
+    display: inline-block;
+}
+
+.table > tbody > tr > .no-line {
+    border-top: none;
+}
+
+.table > thead > tr > .no-line {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .thick-line {
+    border-top: 2px solid;
+}    </style>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+    <div class="row">
+        <div class="col-xs-12">
+    		<div class="invoice-title">
+    			<h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+    		</div>
+    		<hr>
+    		<div class="row">
+    			<div class="col-xs-6">
+    				<address>
+    				<strong>Billed To:</strong><br>
+    					John Smith<br>
+    					1234 Main<br>
+    					Apt. 4B<br>
+    					Springfield, ST 54321
+    				</address>
+    			</div>
+    			<div class="col-xs-6 text-right">
+    				<address>
+        			<strong>Shipped To:</strong><br>
+    					Jane Smith<br>
+    					1234 Main<br>
+    					Apt. 4B<br>
+    					Springfield, ST 54321
+    				</address>
+    			</div>
+    		</div>
+    		<div class="row">
+    			<div class="col-xs-6">
+    				<address>
+    					<strong>Payment Method:</strong><br>
+    					Visa ending **** 4242<br>
+    					jsmith@email.com
+    				</address>
+    			</div>
+    			<div class="col-xs-6 text-right">
+    				<address>
+    					<strong>Order Date:</strong><br>
+    					March 7, 2014<br><br>
+    				</address>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<h3 class="panel-title"><strong>Order summary</strong></h3>
+    			</div>
+    			<div class="panel-body">
+    				<div class="table-responsive">
+    					<table class="table table-condensed">
+    						<thead>
+                                <tr>
+        							<td><strong>Item</strong></td>
+        							<td class="text-center"><strong>Price</strong></td>
+        							<td class="text-center"><strong>Quantity</strong></td>
+        							<td class="text-right"><strong>Totals</strong></td>
+                                </tr>
+    						</thead>
+    						<tbody>
+    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
+    							<tr>
+    								<td>BS-200</td>
+    								<td class="text-center">$10.99</td>
+    								<td class="text-center">1</td>
+    								<td class="text-right">$10.99</td>
+    							</tr>
+                                <tr>
+        							<td>BS-400</td>
+    								<td class="text-center">$20.00</td>
+    								<td class="text-center">3</td>
+    								<td class="text-right">$60.00</td>
+    							</tr>
+                                <tr>
+            						<td>BS-1000</td>
+    								<td class="text-center">$600.00</td>
+    								<td class="text-center">1</td>
+    								<td class="text-right">$600.00</td>
+    							</tr>
+    							<tr>
+    								<td class="thick-line"></td>
+    								<td class="thick-line"></td>
+    								<td class="thick-line text-center"><strong>Subtotal</strong></td>
+    								<td class="thick-line text-right">$670.99</td>
+    							</tr>
+    							<tr>
+    								<td class="no-line"></td>
+    								<td class="no-line"></td>
+    								<td class="no-line text-center"><strong>Shipping</strong></td>
+    								<td class="no-line text-right">$15</td>
+    							</tr>
+    							<tr>
+    								<td class="no-line"></td>
+    								<td class="no-line"></td>
+    								<td class="no-line text-center"><strong>Total</strong></td>
+    								<td class="no-line text-right">$685.99</td>
+    							</tr>
+    						</tbody>
+    					</table>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</div>
+<div class="col-md-6">
+<div class="row">
+    <div class="col-xs-12">
+    <div class="invoice-title">
+      <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-6">
+        <address>
+        <strong>Billed To:</strong><br>
+          John Smith<br>
+          1234 Main<br>
+          Apt. 4B<br>
+          Springfield, ST 54321
+        </address>
+      </div>
+      <div class="col-xs-6 text-right">
+        <address>
+          <strong>Shipped To:</strong><br>
+          Jane Smith<br>
+          1234 Main<br>
+          Apt. 4B<br>
+          Springfield, ST 54321
+        </address>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <address>
+          <strong>Payment Method:</strong><br>
+          Visa ending **** 4242<br>
+          jsmith@email.com
+        </address>
+      </div>
+      <div class="col-xs-6 text-right">
+        <address>
+          <strong>Order Date:</strong><br>
+          March 7, 2014<br><br>
+        </address>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Order summary</strong></h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-condensed">
+            <thead>
+                            <tr>
+                  <td><strong>Item</strong></td>
+                  <td class="text-center"><strong>Price</strong></td>
+                  <td class="text-center"><strong>Quantity</strong></td>
+                  <td class="text-right"><strong>Totals</strong></td>
+                            </tr>
+            </thead>
+            <tbody>
+              <!-- foreach ($order->lineItems as $line) or some such thing here -->
+              <tr>
+                <td>BS-200</td>
+                <td class="text-center">$10.99</td>
+                <td class="text-center">1</td>
+                <td class="text-right">$10.99</td>
+              </tr>
+                            <tr>
+                  <td>BS-400</td>
+                <td class="text-center">$20.00</td>
+                <td class="text-center">3</td>
+                <td class="text-right">$60.00</td>
+              </tr>
+                            <tr>
+                    <td>BS-1000</td>
+                <td class="text-center">$600.00</td>
+                <td class="text-center">1</td>
+                <td class="text-right">$600.00</td>
+              </tr>
+              <tr>
+                <td class="thick-line"></td>
+                <td class="thick-line"></td>
+                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                <td class="thick-line text-right">$670.99</td>
+              </tr>
+              <tr>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line text-center"><strong>Shipping</strong></td>
+                <td class="no-line text-right">$15</td>
+              </tr>
+              <tr>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line text-center"><strong>Total</strong></td>
+                <td class="no-line text-right">$685.99</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+	</body>
 </html>

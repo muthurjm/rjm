@@ -61,6 +61,7 @@
                   <th>Tax</th>
                   <th>SGST</th>
                   <th>CGST</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -73,6 +74,15 @@
                   <td>{{ $purchase['taxable'] }} </td>
                   <td>{{ $purchase['sgst'] }}</td>
                   <td>{{ $purchase['cgst'] }}</td>
+                  <td>
+                      <form action="{{action('admin\PurchaseController@destroy', $purchase['id'])}}" method="post">
+                          @csrf
+                          <a href="{{action('admin\PurchaseController@edit', $purchase['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+                          <input name="_method" type="hidden" value="DELETE">
+                          <button class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this Purchase?')) { return false }"
+                            type="submit"><i class='fa fa-trash-o'></i></button>
+                        </form>
+                      </td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach
               </tbody>

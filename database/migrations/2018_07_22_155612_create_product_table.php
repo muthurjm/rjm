@@ -16,11 +16,12 @@ class CreateProductTable extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->unsignedInteger('hsn_id');
-            $table->foreign('hsn_id')->references('id')->on('hsn') ->onDelete('cascade');
+            $table->string('hsn_id');
+            // $table->foreign('hsn_id')->references('id')->on('hsn') ->onDelete('cascade');
             $table->string('product_no');
             $table->string('product_name')->unique()->nullable();
             $table->string('mrp')->nullable();
+            $table->string('hsn')->nullable();
             $table->string('tax')->nullable();
             $table->string('invoice_price')->nullable();
             $table->string('stock')->default(0);
