@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> @stack('css')
     <style>
+      .border_alert{
+        border: 1px solid red !important;
+          border: 1px solid red !important;
+            border: 1px solid red !important;
+              border: 1px solid red !important;
+                border: 1px solid red !important;
+                  border: 1px solid red !important;
+                    border: 1px solid red !important;
+      }
       textarea{
       height: 40px !important;
       }
@@ -50,12 +59,15 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row md-1">
-        <div class="col-sm-10 ">
+        <div class="col-md-10 ">
           <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Invoices RJM </h3>
             </div>
           </div>
+        </div>
+        <div class="col-md-2">
+        <a href="{{ url('login') }}" ><button  style="width:100px;height:50px;" class="btn btn-primary">Login</button></a>
         </div>
       </div>
     </div>
@@ -172,7 +184,8 @@
                 </div>
                 <div class="col-md-2">
                     <button style="margin-top:34px;"  id="cal" class="btn btn-primary">Calculate </button>
-                </div> 
+                    <button style="margin-top:34px;" type="submit" id="submit_btn" class="btn btn-success">Save Invoice</button>
+                </div>
             </div>
             <hr>
             <div class="row">
@@ -203,10 +216,10 @@
               </div>
             </div>
                 <div class="row">
-              <?php for($i=0;$i<=15;$i++){ ?>
+              <?php for($i=0;$i<=20;$i++){ ?>
                       <div class="col-md-2">
                           <div class="form-group">
-                          <select class="form-control select2 product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
+                          <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
                                   <option value="" selected="selected">Select Product</option>
                                     @foreach($products as $product){
                                     <option value="{{ $product['id'] }}" >{{ $product['id'] }} - {{ $product['product_name'] }}</option>
@@ -236,12 +249,12 @@
                           </div>
                           <div class="col-md-1">
                               <div class="form-group">
-                                  <input type="text"  class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
+                                  <input type="text" disabled class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
                                     </div>
                           </div>
                           <div class="col-md-2">
                               <div class="form-group">
-                              <input type="text"  class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[{{ $i }}]">
+                              <input type="text" disabled class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[{{ $i }}]">
                                     </div>
                           </div>
                           <div class="col-md-1">
@@ -259,16 +272,6 @@
                           <br>
                       <?php } ?>
             </div>
-            <div class="row">
-            <div class="col-md-12">
-                <div class="card-footer">
-                    <div class="text-center">
-                    <button type="submit" id="submit_btn" class="submit-btn">Save Invoice</button>
-                  </div>
-                </div>
-                </div>
-            </div>
-          </div>
           </form>
   </section>
 </body>
@@ -325,7 +328,6 @@
      
   });
   $("#submit_btn").click(function(){
-      // e.preventDefault(); 
       if(!$('#street').val() || !$('#city').val() || !$('#phone').val()) {
                 alert('Select Client');
                 return false;
@@ -346,7 +348,7 @@
           else{
             return false;
           }
-        }
+        } 
     });
         $('.select2').select2()
     $.ajaxSetup({
@@ -382,6 +384,8 @@
     $(".product_code").change(function(){
           var id= $(this).val();
           var card= $(this).attr('data');
+          $(".quantity"+card).removeAttr('disabled');
+          // $(".price"+card).removeAttr('disabled');
           $.ajax({
     url: "/invoice/ajax2/",
     type: "POST",
@@ -412,12 +416,51 @@
           $(".amount"+card).append(amount);
     });
     $(".quantity").keyup(function(){
-          var card= $(this).attr('data');
-          var quantity= $(".quantity"+card).val();
+      var card= $(this).attr('data');
+      var id= $(".product_code"+card).val();
+      var quantity= $(".quantity"+card).val();
+      $.ajax({
+    url: "/invoice/ajax3/",
+    type: "POST",
+    data:{id:id},
+    success: function (data) {
+        // alert(data);
+        if(parseFloat(data) < parseFloat(quantity)){
+          $(".quantity"+card).addClass("border_alert");
+          $(".product_code"+card).addClass("border_alert");
+          $(".hsn"+card).addClass("border_alert");
+          $(".mrp"+card).addClass("border_alert");
+          $(".product"+card).addClass("border_alert");
+          $(".amount"+card).addClass("border_alert");
+          $(".tax"+card).addClass("border_alert");
+          $(".price"+card).addClass("border_alert");
+          $("#submit_btn").attr('disabled','disabled');
+          $("#cal").attr('disabled','disabled');
+          $(".price"+card).val("");
+          $(".amount"+card).append("0");
+          $(".price"+card).attr('disabled','disabled');
+          $(".product_code").attr('disabled','disabled');
+        }else{
+          // alert("ff");
+          $(".price"+card).removeAttr('disabled');
+          $(".quantity"+card).removeClass("border_alert");
+          $(".product_code"+card).removeClass("border_alert");
+          $(".hsn"+card).removeClass("border_alert");
+          $(".mrp"+card).removeClass("border_alert");
+          $(".product"+card).removeClass("border_alert");
+          $(".amount"+card).removeClass("border_alert");
+          $(".tax"+card).removeClass("border_alert");
+          $(".price"+card).removeClass("border_alert");
+          $("#submit_btn").removeAttr('disabled');
+          $("#cal").removeAttr('disabled');
+          $(".product_code").removeAttr('disabled');
           var price= $(".price"+card).val();
           var amount = parseFloat(price * quantity);
           $(".amount"+card).empty();
           $(".amount"+card).append(amount);
+        }
+    }
+})
     });
   });
 </script>

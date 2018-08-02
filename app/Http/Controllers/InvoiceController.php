@@ -76,9 +76,9 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function ajax3(Request $request)
-    {
-        $products = Product::all();
-        return view("raw",compact("products"));
+    {;
+        $products = Product::find($request->id);
+        return $products->stock;
     }
     /**
      * Display a listing of the resource.
@@ -130,6 +130,7 @@ class InvoiceController extends Controller
         $client->save();
         foreach($request->product_code as $keys => $sproduct_code){
             $purchaseproduct[$keys] = new InvoicesPurchase();
+            if($sproduct_code != null &&  $request->quantity[$keys] != null){
             $purchaseproduct[$keys]->invoice_id = $client->id;
             $purchaseproduct[$keys]->product_code = $sproduct_code;
             $purchaseproduct[$keys]->hsn = $request->hsn[$keys];
@@ -139,8 +140,11 @@ class InvoiceController extends Controller
             $purchaseproduct[$keys]->price = $request->price[$keys];
             $purchaseproduct[$keys]->gst = $request->tax[$keys];
             $purchaseproduct[$keys]->amount = $request->amount[$keys];
-            if($sproduct_code != null){
-            $purchaseproduct[$keys]->save();
+                $product = Product::find($sproduct_code);
+                Product::where('id',$sproduct_code)->update(array(
+                    'stock' =>  $product->stock - $request->quantity[$keys],
+                ));
+                $purchaseproduct[$keys]->save();
             }
         }       
         return back()->with("success","Added Successfully");
