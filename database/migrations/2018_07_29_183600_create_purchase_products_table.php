@@ -18,8 +18,8 @@ class CreatePurchaseProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('purchase_id');
             $table->foreign('purchase_id')->references('id')->on('purchase') ->onDelete('cascade');
-            $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('product') ->onDelete('cascade');
+            $table->string('product_id');
+            // $table->foreign('product_id')->references('id')->on('product') ->onDelete('cascade');
             $table->string('quantity');
             $table->timestamps();
         });

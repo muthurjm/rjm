@@ -59,13 +59,19 @@
                   <td>{{ $i }}</td>
                   <td>{{ $product['product_no'] }}</td>
                   <td>{{ $product['product_name'] }}</td>
-                  <td>{{ $product['hsn_code'] }}</td>
+                  <td>{{ $product['hsn'] }}</td>
                   <td>Rs {{ $product['mrp'] }}/- </td>
                   <td>{{ $product['tax'] }}%</td>
                   <td>{{ $product['invoice_price'] }}</td>
                   <td>{{ $product['target'] }}</td>
                   <td>
-                      <a href="{{action('admin\ProductController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+                      <form action="{{action('admin\ProductController@destroy', $product['id'])}}" method="post">
+                          @csrf
+                          <a href="{{action('admin\ProductController@edit', $product['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+                          <input name="_method" type="hidden" value="DELETE">
+                          <button class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this Product?')) { return false }"
+                            type="submit"><i class='fa fa-trash-o'></i></button>
+                        </form>
                  </td>
                 </tr>
                 <?php $i = $i+1 ?> @endforeach

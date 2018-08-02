@@ -131,6 +131,9 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hsn = Purchase::find($id);
+        if($hsn->delete()){
+            return back()->with("success","Deleted Sucessfully");
+        }
     }
 }

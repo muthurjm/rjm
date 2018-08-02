@@ -17,8 +17,8 @@ class CreateInvoicesTable extends Migration
             $table->increments('id');
             $table->string('invoice_number');
             $table->date('invoice_date');
-            $table->unsignedInteger('client_code');
-            $table->foreign('client_code')->references('id')->on('client');
+            $table->string('client_code');
+            // $table->foreign('client_code')->references('id')->on('client');
             $table->string('name');
             $table->string('street')->nullable();
             $table->string('city'); 

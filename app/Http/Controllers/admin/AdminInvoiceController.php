@@ -91,6 +91,9 @@ class AdminInvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hsn = Invoice::find($id);
+        if($hsn->delete()){
+            return back()->with("success","Deleted Sucessfully");
+        }
     }
 }

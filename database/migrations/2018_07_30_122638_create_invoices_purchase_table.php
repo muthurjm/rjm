@@ -17,8 +17,8 @@ class CreateInvoicesPurchaseTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('invoice_id');
             $table->foreign('invoice_id')->references('id')->on('invoices');
-            $table->unsignedInteger('product_code');
-            $table->foreign('product_code')->references('id')->on('product');
+            $table->string('product_code');
+            // $table->foreign('product_code')->references('id')->on('product');
             $table->string('hsn');
             $table->string('mrp');
             $table->string('product_name');
