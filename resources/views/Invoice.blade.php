@@ -189,7 +189,7 @@
             </div>
             <hr>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-4">
                  <label><b>Product Code*</b></label>
               </div>
               <div class="col-md-1">
@@ -198,9 +198,9 @@
                 <div class="col-md-1">
                   <label>MRP*</label>
                 </div>
-                <div class="col-md-2">
+                {{-- <div class="col-md-2">
                     <label>Product Name*</label>
-                  </div>
+                  </div> --}}
                 <div class="col-md-1">
                   <label>Quantity*</label>
                 </div>
@@ -220,7 +220,7 @@
             </div>
                 <div class="row">
               <?php for($i=0;$i<=20;$i++){ ?>
-                      <div class="col-md-2">
+                      <div class="col-md-4">
                           <div class="form-group">
                           <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
                                   <option value="" selected="selected">Select Product</option>
@@ -244,12 +244,13 @@
                                   <textarea class="hide form-control mrp{{ $i }}" name="mrp[{{ $i }}]"></textarea>
                                     </div>
                           </div>
-                          <div class="col-md-2">
+                          <textarea class="hide form-control product{{ $i }}" name="product[{{ $i }}]"></textarea>
+                          {{-- <div class="col-md-2">
                               <div class="form-group">
                                   <textarea readonly class="form-control product{{ $i }}" id="product{{ $i }}" title="Product Name" placeholder="Select Product Name" required></textarea>
                                   <textarea class="hide form-control product{{ $i }}" name="product[{{ $i }}]"></textarea>
                                     </div>
-                          </div>
+                          </div> --}}
                           <div class="col-md-1">
                               <div class="form-group">
                                   <input type="text" disabled class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
@@ -314,7 +315,7 @@
        var subtotal = 0;
        var amount = 0;
        var gst = 0;
-     for(i= 0;i<=15;i++){
+     for(i= 0;i<=20;i++){
         var gst = $("#tax"+i).val();
         if($("#amount"+i).val()){
           var amount = $("#amount"+i).val();
@@ -342,23 +343,38 @@
                 alert('Select Client');
                 return false;
         }
-      else if(!$('#product_code0').val()) {
+        else if(!$('#product_code0').val()) {
                 alert('Atleast One Product is required');
                 return false;
-        }
-       else if(!$('#quantity0').val() || !$('#price0').val()) {
+          }
+         else if(!$('#quantity0').val() || !$('#price0').val()) {
                 alert('Enter Product details correctly');
                 return false;
         }
-        else{
+        for(i= 1;i<=20;i++){
+            if($('#product_code'+i).val()) {
+              if(!$('#quantity'+i).val() || !$('#price'+i).val()) {
+                alert('Enter Detail Correctly');
+                // alert(i);
+                $(".quantity"+i).addClass("border_alert");
+                $(".tax"+i).addClass("border_alert");
+                $(".mrp"+i).addClass("border_alert");
+                $(".amount"+i).addClass("border_alert");
+                $(".price"+i).addClass("border_alert");
+                $(".hsn"+i).addClass("border_alert");
+                $(".math"+i).addClass("border_alert");
+                // $(".math").attr('disabled','disabled');
+                return false;
+            }
+          }
+        }
           if(confirm('Are You want to print the Invoice')){
           $("#cal").trigger("click");
           $('#formId').submit();
           }
           else{
             return false;
-          }
-        } 
+          } 
     });
         $('.select2').select2()
     $.ajaxSetup({
@@ -453,8 +469,8 @@
           $(".price"+card).addClass("border_alert");
           $("#submit_btn").attr('disabled','disabled');
           $("#cal").attr('disabled','disabled');
-          $(".price"+card).val("");
-          $(".amount"+card).append("0");
+          $(".price"+card).append("");
+          $(".amount"+card).append("");
           $(".price"+card).attr('disabled','disabled');
           $(".product_code").attr('disabled','disabled');
         }else{
