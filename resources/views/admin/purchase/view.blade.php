@@ -87,8 +87,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php $j=1; ?>
                                                     @foreach($purchases as $purchase)
-                                                    <?php $j=1;  if($productpurchase['id'] == $purchase['purchase_id']){ ?>
+                                                    <?php  if($productpurchase['id'] == $purchase['purchase_id']){  ?>
                                                     <tr>
                                                         <td>{{ $j }}</td>
                                                         <td>{{ $purchase['product_name']}}</td>

@@ -103,7 +103,7 @@
                     <select class="form-control select2" name="client_code" id="client_code" style="width:100%;" >
                       <option value="" selected="selected">Select Client Code</option>
                         @foreach($clients as $client){
-                        <option value="{{ $client['id'] }}" >{{ $client['id'] }} - {{ $client['name'] }}</option>
+                        <option value="{{ $client['id'] }}" >{{ $client['id'] }} - {{ $client['name'] }} - {{ $client['street'] }}</option>
                         }
                         @endforeach
                     </select>
@@ -204,9 +204,12 @@
                 <div class="col-md-1">
                   <label>Quantity*</label>
                 </div>
-                <div class="col-md-2">
-                  <label>Price*</label>
+                <div class="col-md-1">
+                  <label>Tax*</label>
                 </div>
+                <div class="col-md-1">
+                    <label>Price*</label>
+                  </div>
                 <div class="col-md-1">
                   <label>GST*</label>
                 </div>
@@ -222,7 +225,7 @@
                           <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
                                   <option value="" selected="selected">Select Product</option>
                                     @foreach($products as $product){
-                                    <option value="{{ $product['id'] }}" >{{ $product['id'] }} - {{ $product['product_name'] }}</option>
+                                    <option value="{{ $product['id'] }}" >{{ $product['product_no'] }} - {{ $product['product_name'] }}</option>
                                     }
                                     @endforeach
                                 </select>
@@ -252,9 +255,16 @@
                                   <input type="text" disabled class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
                                     </div>
                           </div>
-                          <div class="col-md-2">
+                          
+                          <div class="col-md-1">
                               <div class="form-group">
-                              <input type="text" disabled class="form-control price price{{ $i }}" data="{{ $i }}" id="price{{ $i }}" title="Price" name="price[{{ $i }}]">
+                              <input type="text" disabled class="form-control math math{{ $i }}" data="{{ $i }}" id="math{{ $i }}" title="Tax">
+                                    </div>
+                          </div>
+                          <div class="col-md-1">
+                              <div class="form-group">
+                                  <textarea readonly class="form-control price{{ $i }}" id="price{{ $i }}" title="Price"></textarea>
+                                  <textarea class="hide form-control price{{ $i }}" name="price[{{ $i }}]"></textarea>
                                     </div>
                           </div>
                           <div class="col-md-1">
@@ -328,7 +338,7 @@
      
   });
   $("#submit_btn").click(function(){
-      if(!$('#street').val() || !$('#city').val() || !$('#phone').val()) {
+      if(!$('#city').val() || !$('#phone').val()) {
                 alert('Select Client');
                 return false;
         }
@@ -407,13 +417,19 @@
     },
 })
     });
-      $(".price").keyup(function(){
+      $(".math").keyup(function(){
+          var price;
           var card= $(this).attr('data');
           var quantity= $(".quantity"+card).val();
-          var price= $(".price"+card).val();
+          var mrp = $(".mrp"+card).val();
+          var math= $(".math"+card).val();
+          price = parseFloat(mrp * math/100);
+          price = mrp-price;
           var amount = parseFloat(price * quantity);
           $(".amount"+card).empty();
+          $(".price"+card).empty();
           $(".amount"+card).append(amount);
+          $(".price"+card).append(price);
     });
     $(".quantity").keyup(function(){
       var card= $(this).attr('data');
@@ -433,6 +449,7 @@
           $(".product"+card).addClass("border_alert");
           $(".amount"+card).addClass("border_alert");
           $(".tax"+card).addClass("border_alert");
+          $(".math"+card).addClass("border_alert");
           $(".price"+card).addClass("border_alert");
           $("#submit_btn").attr('disabled','disabled');
           $("#cal").attr('disabled','disabled');
@@ -441,13 +458,13 @@
           $(".price"+card).attr('disabled','disabled');
           $(".product_code").attr('disabled','disabled');
         }else{
-          // alert("ff");
-          $(".price"+card).removeAttr('disabled');
+          $(".math"+card).removeAttr('disabled');
           $(".quantity"+card).removeClass("border_alert");
           $(".product_code"+card).removeClass("border_alert");
           $(".hsn"+card).removeClass("border_alert");
           $(".mrp"+card).removeClass("border_alert");
           $(".product"+card).removeClass("border_alert");
+          $(".math"+card).removeClass("border_alert");
           $(".amount"+card).removeClass("border_alert");
           $(".tax"+card).removeClass("border_alert");
           $(".price"+card).removeClass("border_alert");

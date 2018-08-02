@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'DESC')->get();
         // foreach ($products as $product) {
         //     $hsn_id = $product->hsn_id;
         //     $hsn = Hsn::find($hsn_id);
@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product_no = "100";
+        $product_no = "101";
         try{
         $product_no = Product::all()->last()->product_no;
         $product_no = $product_no+1;
@@ -58,7 +58,7 @@ class ProductController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'product_name' => 'bail|unique:client',
+            'product_name' => 'bail|unique:product',
         ]);
         if ($validator->fails()) {
             return back()->with('error','Product Already Exist');
@@ -67,7 +67,7 @@ class ProductController extends Controller
         $product  = new Product();
         $product->product_no = $request->product_no;
         $product->hsn_id = $request->hsn_code;
-        $product->product_name = $request->name;
+        $product->product_name = $request->product_name;
         $product->mrp = $request->mrp;
         $product->target = $request->target;
         $product->hsn = $hsn->hsn_code;

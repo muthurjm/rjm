@@ -18,7 +18,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $bill_no = "1000";
+        $bill_no = "1001";
         try{
         $bill_no = Invoices::all()->last()->invoice_number;
         $bill_no = $bill_no+1;
