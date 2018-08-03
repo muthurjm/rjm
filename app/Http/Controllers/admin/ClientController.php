@@ -53,6 +53,7 @@ class ClientController extends Controller
             'city' => 'required',
             'tin' => 'nullable|unique:client',
             'phone2' => 'nullable',
+            'phone1' => 'nullable',
         ]);
         $k = 1;
                $clients = Client::all();

@@ -88,7 +88,7 @@ table{
 							  </thead>
 							  <tbody>
 									<?php $i=1 ?> @foreach($invoicepurchases as $invoicepurchase)
-									<?php if($invoicepurchase->invoice_id <= $invoice->id){ ?>
+									<?php if($invoicepurchase->invoice_id == $invoice->id){  ?>
 								  <tr>
 										<td class="text-center">{{ $i }}</td>
 									  <td class="text-center">{{ $invoicepurchase['product_code'] }}</td>
@@ -100,40 +100,62 @@ table{
 									  <td class="text-center">{{ $invoicepurchase['gst'] }}</td>
 									  <td class="text-center">{{ $invoicepurchase['amount'] }}</td>
 								  </tr>
-								<?php } $i = $i+1 ?> @endforeach
+								<?php  $i = $i+1; }?> @endforeach
 								<tr style="font-weight:bold;">
 										<td class="text-center">CGST 6%</td>
 										<td class="text-center">{{ $invoice["cgst_6"] }}</td>
 										<td class="text-center">SGST 6%</td>
 										<td class="text-center">{{ $invoice["sgst_6"] }}</td>
-										<td class="text-center">GST 12%</td>
-										<td class="text-center">{{ $invoice["gst_12"] }}</td>
 										<td class="text-center"></td>
-									  <td class="text-center"></td>
-									  <td class="text-center"></td>
+										<td class="text-center"></td>
+										<td class="text-center"></td>
+										<td class="text-center">SUB TOTAL</td>
+										<td class="text-center">{{ $invoice["sub_total"] }}</td>
 								  </tr>
 								  <tr style="font-weight:bold;">
 										<td class="text-center">CGST 9%</td>
 										<td class="text-center">{{ $invoice["cgst_9"] }}</td>
 										<td class="text-center">SGST 9%</td>
 										<td class="text-center">{{ $invoice["sgst_9"] }}</td>
-										<td class="text-center">GST 18%</td>
-										<td class="text-center">{{ $invoice["gst_18"] }}</td>
 										<td class="text-center"></td>
-									  <td class="text-center">Sub Total</td>
-									  <td class="text-center">{{ $invoice["sub_total"] }}</td>
+										<td class="text-center"></td>
+										<td class="text-center"></td>
+									  <td class="text-center">GST 12%</td>
+										<td class="text-center">{{ $invoice["gst_12"] }}</td>
 								  </tr>
 								  <tr style="font-weight:bold;">
 										<td class="text-center">CGST 14%</td>
 										<td class="text-center">{{ $invoice["cgst_14"] }}</td>
 										<td class="text-center">SGST 14%</td>
 										<td class="text-center">{{ $invoice["sgst_14"] }}</td>
-										<td class="text-center">GST 28%</td>
-										<td class="text-center">{{ $invoice["gst_18"] }}</td>
 										<td class="text-center"></td>
-									  <td class="text-center">Grand Total</td>
-									  <td class="text-center">{{ $invoice["grand_total"] }}</td>
-								  </tr>
+										<td class="text-center"></td>
+										<td class="text-center"></td>
+									  <td class="text-center">GST 18%</td>
+										<td class="text-center">{{ $invoice["gst_18"] }}</td>
+									</tr>
+									<tr style="font-weight:bold;">
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td class="text-center"></td>
+											<td class="text-center">GST 28%</td>
+											<td class="text-center">{{ $invoice["gst_28"] }}</td>
+										</tr>
+										<tr style="font-weight:bold;">
+												<td class="text-center"></td>
+												<td class="text-center"></td>
+												<td class="text-center"></td>
+												<td class="text-center"></td>
+												<td class="text-center"></td>
+												<td class="text-center"></td>
+												<td class="text-center"></td>
+												<td class="text-center">GRAND TOTAL</td>
+												<td class="text-center">{{ $invoice["grand_total"] }}</td>
+											</tr>
 							  </tbody>
 						  </table>
 					  </div>

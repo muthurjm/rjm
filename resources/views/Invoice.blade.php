@@ -225,7 +225,9 @@
                           <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
                                   <option value="" selected="selected">Select Product</option>
                                     @foreach($products as $product){
+                                      <?php if($product->stock > 0) {?>
                                     <option value="{{ $product['id'] }}" >{{ $product['product_no'] }} - {{ $product['product_name'] }}</option>
+                                      <?php } ?>
                                     }
                                     @endforeach
                                 </select>
@@ -330,13 +332,20 @@
          gst28 = gst28+parseFloat(amount);
        } 
      }
+     gst12 = gst12*0.12;
+     gst18 = gst18*0.18;
+     gst28 = gst12*0.28;
     var grandtotal = parseFloat(subtotal+gst18+gst12+gst28);
      $(".total").append(subtotal);
-     $(".gst12").append(gst12*0.12);
-     $(".gst18").append(gst18*0.18);
-     $(".gst28").append(gst28*0.28);
+     $(".gst12").append(gst12);
+     $(".gst18").append(gst18);
+     $(".gst28").append(gst28);
      $(".grandtotal").append(parseFloat(grandtotal));
-     
+    //  alert(subtotal);
+    //  alert(gst12);
+    //  alert(gst18);
+    //  alert(gst28);
+    //  alert(grandtotal);
   });
   $("#submit_btn").click(function(){
       if(!$('#city').val() || !$('#phone').val()) {
@@ -353,7 +362,7 @@
         }
         for(i= 1;i<=20;i++){
             if($('#product_code'+i).val()) {
-              if(!$('#quantity'+i).val() || !$('#price'+i).val()) {
+              if(!$('#quantity'+i).val() || !$('#price'+i).val() || !$('#math'+i).val()) {
                 alert('Enter Detail Correctly');
                 // alert(i);
                 $(".quantity"+i).addClass("border_alert");

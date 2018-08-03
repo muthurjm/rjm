@@ -60,7 +60,7 @@
                       </div>
                   <div class="form-group">
                       <label for="Phone1">Phone1*</label>
-                      <input type="text" class="form-control" id="Phone1" title="Phone1" name="phone1" placeholder="Enter Phone1" required>
+                      <input type="text" class="form-control" id="Phone1" title="Phone1" name="phone1" placeholder="Enter Phone1" >
                         </div>
                   <div class="form-group">
                         <label for="Phone2">Phone2</label>

@@ -18,7 +18,7 @@ class AdminInvoiceController extends Controller
      */
     public function index()
     {
-        $invoice = Invoices::all();
+        $invoice = Invoices::orderBy('id', 'DESC')->get();
         foreach ($invoice as $invoices){
             $invoices["count"] = DB::table('invoices_purchase')->where("invoice_id", '=', $invoices->id)->count();
         }
