@@ -29,7 +29,8 @@ table{
 </style>
 	</head>
 <body>
-		<center><a onclick="myFunction()" class="btn btn-primary">Print Preview</a></center>
+<center><a href="{{ url('/') }}" class="btn btn-primary">Invoice</a>
+	<a onclick="myFunction()" class="btn btn-primary">Print Preview</a></center>
     <div class="container-fluid">
 		<div class="row">
 		  <div class="col-md-7">

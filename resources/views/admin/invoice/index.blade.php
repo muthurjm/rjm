@@ -48,6 +48,7 @@
                   <th>Count</th>
                   <th>Sub Total</th>
                   <th>Grand Total</th>
+                  <th>Print</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -63,6 +64,9 @@
                   <td>{{ $invoices['count'] }}</td>
                   <td>{{ $invoices['sub_total'] }}</td>
                   <td>{{ $invoices['grand_total'] }}</td>
+                  <td>
+                      <a target="_blank" href="{{action('InvoiceController@print1', $invoices['id'])}}" title='View' class='btn btn-flat btn-success'><i class="fa fa-print"></i></button></a>
+                  </td>
                   <td>
                       <form action="{{action('admin\AdminInvoiceController@destroy', $invoices['id'])}}" method="post">
                           @csrf
