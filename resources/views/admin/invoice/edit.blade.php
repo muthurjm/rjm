@@ -16,6 +16,12 @@
     <style>
       .border_alert{
         border: 1px solid red !important;
+          border: 1px solid red !important;
+            border: 1px solid red !important;
+              border: 1px solid red !important;
+                border: 1px solid red !important;
+                  border: 1px solid red !important;
+                    border: 1px solid red !important;
       }
       textarea{
       height: 40px !important;
@@ -87,8 +93,8 @@
                 <div class="col-md-5">
               <div class="form-group">
                 <label for="code">Bill No*</label>
-              <input type="text" class="form-control" id="invoice_number" value="{{ $bill_no }}"  disabled title="Client Name">
-              <input type="hidden" name="invoice_number" value="{{ $bill_no }}">
+              <input type="text" class="form-control" id="invoice_number" value="{{ $invoice["invoice_number"] }}"  disabled title="Client Name">
+              <input type="hidden" name="invoice_number" value="{{ $invoice["invoice_number"] }}">
               </div>
                 </div>
                 <div class="col-md-5">
@@ -106,36 +112,36 @@
               <div class="col-md-5">
                 <div class="form-group">
                   <label for="name">Name*</label>
-                  <textarea  readonly class="form-control name" id="name" title="Name" placeholder="Select Client" required></textarea>
-                  <textarea class="hide form-control name"  name="name"></textarea>
+                  <textarea  readonly class="form-control name" id="name" title="Name" placeholder="Select Client" required>{{ $invoice["name"] }}</textarea>
+                  <textarea class="hide form-control name"  name="name">{{ $invoice["name"] }}</textarea>
                     </div>
                   </div>
               <div class="col-md-5">
               <div class="form-group">
                 <label for="street">Street*</label>
-                <textarea  readonly class="form-control street  " id="street" title="Street" placeholder="Select Client" required></textarea>
-                <textarea class="hide form-control street"  name="street"></textarea>
+                <textarea  readonly class="form-control street  " id="street" title="Street" placeholder="Select Client" required>{{ $invoice["street"] }} </textarea>
+                <textarea class="hide form-control street"  name="street">{{ $invoice["street"] }}</textarea>
                   </div>
                 </div>
                 <div class="col-md-4">
               <div class="form-group">
                   <label for="city">City*</label>
-                  <textarea  readonly class="form-control city" id="city" title="City"  placeholder="Select Client" required></textarea>
-                  <textarea class="hide form-control city" name="city"></textarea>
+                  <textarea  readonly class="form-control city" id="city" title="City"  placeholder="Select Client" required>{{ $invoice["city"] }} </textarea>
+                  <textarea class="hide form-control city" name="city">{{ $invoice["city"] }}</textarea>
                     </div>
                   </div>
                   <div class="col-md-4">
                 <div class="form-group">
                     <label for="tin">Tin Number*</label>
-                    <textarea readonly class="form-control tin" id="tin" title="Street" placeholder="Select Client" required></textarea>
-                    <textarea class="hide form-control tin" name="tin"></textarea>
+                    <textarea readonly class="form-control tin" id="tin" title="TIN No" placeholder="Select Client" required>{{ $invoice["tin"] }}</textarea>
+                    <textarea class="hide form-control tin" name="tin">{{ $invoice["tin"] }}</textarea>
                       </div>
                     </div>
                     <div class="col-md-4">
                   <div class="form-group">
                       <label for="Phone">Phone Number*</label>
-                      <textarea readonly class="form-control phone" id="phone" title="Phone" placeholder="Select Client" required></textarea>
-                      <textarea class="hide form-control phone" name="phone"></textarea>
+                      <textarea readonly class="form-control phone" id="phone" title="Phone" placeholder="Select Client" required>{{ $invoice["phone"] }}</textarea>
+                      <textarea class="hide form-control phone" name="phone">{{ $invoice["phone"] }}</textarea>
                         </div>
                       </div>
             </div>
@@ -144,36 +150,36 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="total">Sub Total*</label>
-                        <textarea readonly class="form-control total" id="total" title="Sub Total" placeholder="Click Calculate" required></textarea>
-                        <textarea class="hide form-control total"  name="subtotal"></textarea>
+                        <textarea readonly class="form-control total" id="total" title="Sub Total" placeholder="Click Calculate" required>{{ $invoice["sub_total"] }}</textarea>
+                        <textarea class="hide form-control total"  name="subtotal">{{ $invoice["sub_total"] }}</textarea>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
                         <label for="gst12">Gst 12%*</label>
-                        <textarea readonly class="form-control gst12" id="gst12" title="GST 12%" placeholder="Click Calculate" required></textarea>
-                        <textarea class="hide form-control gst12"  name="gst12"></textarea>
+                        <textarea readonly class="form-control gst12" id="gst12" title="GST 12%" placeholder="Click Calculate" required>{{ $invoice["gst_12"] }}</textarea>
+                        <textarea class="hide form-control gst12"  name="gst12">{{ $invoice["gst_12"] }}</textarea>
                   </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="gst18">Gst 18%*</label>
-                        <textarea readonly class="form-control gst18" id="gst18" title="GST 18%" placeholder="Click Calculate" required></textarea>
-                        <textarea class="hide form-control gst18"  name="gst18"></textarea>
+                        <textarea readonly class="form-control gst18" id="gst18" title="GST 18%" placeholder="Click Calculate" required>{{ $invoice["gst_18"] }}</textarea>
+                        <textarea class="hide form-control gst18"  name="gst18">{{ $invoice["gst_18"] }}</textarea>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
                         <label for="gst28">Gst 28%*</label>
-                        <textarea readonly class="form-control gst28" id="gst28" title="GST 28%" placeholder="Click Calculate" required></textarea>
-                        <textarea class="hide form-control gst28"  name="gst28"></textarea>
+                        <textarea readonly class="form-control gst28" id="gst28" title="GST 28%" placeholder="Click Calculate" required>{{ $invoice["gst_28"] }}</textarea>
+                        <textarea class="hide form-control gst28"  name="gst28">{{ $invoice["gst_28"] }}</textarea>
                   </div>
                 </div> 
                 <div class="col-md-2">
                   <div class="form-group">
                       <label for="grandtotal">Grand Total*</label>
-                      <textarea readonly class="form-control grandtotal" id="grandtotal" title="Grand Total" placeholder="Click Calculate" required></textarea>
-                      <textarea class="hide form-control grandtotal"  name="grandtotal"></textarea>
+                      <textarea readonly class="form-control grandtotal" id="grandtotal" title="Grand Total" placeholder="Click Calculate" required>{{ $invoice["grand_total"] }}</textarea>
+                      <textarea class="hide form-control grandtotal"  name="grandtotal">{{ $invoice["grand_total"] }}</textarea>
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -192,9 +198,6 @@
                 <div class="col-md-1">
                   <label>MRP*</label>
                 </div>
-                {{-- <div class="col-md-2">
-                    <label>Product Name*</label>
-                  </div> --}}
                 <div class="col-md-1">
                   <label>Quantity*</label>
                 </div>
@@ -213,7 +216,8 @@
               </div>
             </div>
                 <div class="row">
-              <?php for($i=0;$i<=20;$i++){ ?>
+                    <?php $i = 0 ?>
+                    @foreach($invoicepurchases as $invoicepurchase)
                       <div class="col-md-4">
                           <div class="form-group">
                           <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
@@ -230,14 +234,14 @@
                           <div class="col-md-1">
                               <div class="form-group">
                                   
-                              <textarea readonly class="form-control hsn{{ $i }}" id="hsn{{ $i }}" title="Hsn Code" placeholder="Hsn" required></textarea>
-                                  <textarea class="hide form-control hsn{{ $i }}" name="hsn[{{ $i }}]"></textarea>
+                              <textarea readonly class="form-control hsn{{ $i }}" id="hsn{{ $i }}" title="Hsn Code" placeholder="Hsn" required>{{ $invoicepurchase['product_name'] }}</textarea>
+                                  <textarea class="hide form-control hsn{{ $i }}" name="hsn[{{ $i }}]">{{ $invoicepurchases["product_name"] }}</textarea>
                                     </div>
                           </div>
                           <div class="col-md-1">
                               <div class="form-group">
-                                  <textarea readonly class="form-control mrp{{ $i }}" id="mrp{{ $i }}" title="MRP"  placeholder="MRP"  required></textarea>
-                                  <textarea class="hide form-control mrp{{ $i }}" name="mrp[{{ $i }}]"></textarea>
+                                  <textarea readonly class="form-control mrp{{ $i }}" id="mrp{{ $i }}" title="MRP"  placeholder="MRP"  required>{{ $invoicepurchases["mrp"] }}</textarea>
+                                  <textarea class="hide form-control mrp{{ $i }}" name="mrp[{{ $i }}]">{{ $invoicepurchases["mrp"] }}</textarea>
                                     </div>
                           </div>
                           <textarea class="hide form-control product{{ $i }}" name="product[{{ $i }}]"></textarea>
@@ -271,8 +275,70 @@
                                     </div>
                           </div>
                           <br>
-                      <?php } ?>
+                          @endforeach
+                          <?php $i++; ?>
             </div>
+            <div class="row">
+                <?php for($i=0;$i<=20;$i++){ ?>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                            <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
+                                    <option value="" selected="selected">Select Product</option>
+                                      @foreach($products as $product){
+                                        <?php if($product->stock > 0) {?>
+                                      <option value="{{ $product['id'] }}" >{{ $product['product_no'] }} - {{ $product['product_name'] }}</option>
+                                        <?php } ?>
+                                      }
+                                      @endforeach
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                <textarea readonly class="form-control hsn{{ $i }}" id="hsn{{ $i }}" title="Hsn Code" placeholder="Hsn" required></textarea>
+                                    <textarea class="hide form-control hsn{{ $i }}" name="hsn[{{ $i }}]"></textarea>
+                                      </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <textarea readonly class="form-control mrp{{ $i }}" id="mrp{{ $i }}" title="MRP"  placeholder="MRP"  required></textarea>
+                                    <textarea class="hide form-control mrp{{ $i }}" name="mrp[{{ $i }}]"></textarea>
+                                      </div>
+                            </div>
+                            <textarea class="hide form-control product{{ $i }}" name="product[{{ $i }}]"></textarea>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <input type="text" disabled class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
+                                      </div>
+                            </div>
+                            
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                <input type="text" disabled class="form-control math math{{ $i }}" data="{{ $i }}" id="math{{ $i }}" title="Tax">
+                                      </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <textarea readonly class="form-control price{{ $i }}" id="price{{ $i }}" title="Price"></textarea>
+                                    <textarea class="hide form-control price{{ $i }}" name="price[{{ $i }}]"></textarea>
+                                      </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <textarea readonly class="form-control tax{{ $i }}" id="tax{{ $i }}" title="GST"></textarea>
+                                    <textarea class="hide form-control tax{{ $i }}" name="tax[{{ $i }}]"></textarea>
+                                      </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <textarea readonly class="form-control amount{{ $i }}" id="amount{{ $i }}" title="Amount"  required></textarea>
+                                    <textarea class="hide form-control amount{{ $i }}" name="amount[{{ $i }}]"></textarea>
+                                      </div>
+                            </div>
+                            <br>
+                        <?php } ?>
+              </div>
           </form>
   </section>
 </body>
@@ -336,7 +402,7 @@
     //  alert(grandtotal);
   });
   $("#submit_btn").click(function(){
-      if(!$('#city').val() || !$('#street').val()|| !$('#name').val()) {
+      if(!$('#city').val() || !$('#phone').val()) {
                 alert('Select Client');
                 return false;
         }

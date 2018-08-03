@@ -145,7 +145,7 @@ class InvoiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+      * @return \Illuminate\Http\Response
      */
     public function print1($id)
     {
@@ -173,7 +173,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+     // 
     }
 
     /**
