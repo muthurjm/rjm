@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Invoices;
+use App\Client;
 use App\Product;
 use App\InvoicesPurchase;
 use DB;
@@ -68,7 +69,11 @@ class AdminInvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoice = Invoices::find($id);
+        $clients = client::all();
+        $products = Product::all();
+        $invoicepurchases = InvoicesPurchase::all();
+        return view('admin/invoice/edit', compact('clients','products','invoice','id','invoicepurchases'));
     }
 
     /**

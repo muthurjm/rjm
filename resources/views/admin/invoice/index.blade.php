@@ -48,7 +48,6 @@
                   <th>Count</th>
                   <th>Sub Total</th>
                   <th>Grand Total</th>
-                  <th>Print</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -65,12 +64,10 @@
                   <td>{{ $invoices['sub_total'] }}</td>
                   <td>{{ $invoices['grand_total'] }}</td>
                   <td>
-                      <a target="_blank" href="{{action('InvoiceController@print1', $invoices['id'])}}" title='View' class='btn btn-flat btn-success'><i class="fa fa-print"></i></button></a>
-                  </td>
-                  <td>
                       <form action="{{action('admin\AdminInvoiceController@destroy', $invoices['id'])}}" method="post">
                           @csrf
-                          <a href="{{action('admin\AdminInvoiceController@edit', $invoices['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a>
+                          {{-- <a href="{{action('admin\AdminInvoiceController@edit', $invoices['id'])}}" title='Edit' class='btn btn-flat btn-primary'><i class='fa fa-edit'></i></a> --}}
+                          <a target="_blank" href="{{action('InvoiceController@print1', $invoices['id'])}}" title='View' class='btn btn-flat btn-success'><i class="fa fa-print"></i></button></a>
                           <a href="{{action('admin\AdminInvoiceController@show', $invoices['id'])}}" title='View' class='btn btn-flat btn-info'><i class="fa fa-eye"></i></button></a>
                           <input name="_method" type="hidden" value="DELETE">
                           <button style="margin-top: -67px;margin-left: 90px;" class="btn btn-danger" onclick="if (!confirm('Are you sure,You want to delete this Invoice  ?')) { return false }"
