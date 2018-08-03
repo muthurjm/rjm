@@ -81,15 +81,6 @@ class InvoiceController extends Controller
         return $products->stock;
     }
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function print()
-    {
-       return view("printinvoice");
-    }
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -147,8 +138,20 @@ class InvoiceController extends Controller
                 $purchaseproduct[$keys]->save();
             }
         }       
-        return back()->with("success","Added Successfully");
+        return redirect("printinvoice/$client->id");
 
+    }
+       /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function print1($id)
+    {
+        $invoice = Invoices::find($id);
+        $invoicepurchases = InvoicesPurchase::all();
+        return view("printconfirm",compact("invoice","invoicepurchases"));
     }
 
     /**

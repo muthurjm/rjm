@@ -10,15 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */ 
-Route::get('/p', function () {
-    return view('printconfirm');
-});
 Route::resource('/', 'InvoiceController');
 Route::post('/invoice/ajax1/', 'InvoiceController@ajax1');
 Route::post('/invoice/ajax2/', 'InvoiceController@ajax2');
 Route::post('/invoice/ajax3/', 'InvoiceController@ajax3');
 Route::resource('/invoiceconfirm', 'InvoiceConfirmController');
-Route::get('printinvoice', 'InvoiceController@print');
+Route::get('printinvoice/{id}', 'InvoiceController@print1');
 
 Route::group(['middleware'=>'auth'], function () {
 Route::resource('/client', 'admin\ClientController');
