@@ -34,7 +34,7 @@
                     </div>
               <div class="form-group">
                 <label for="Street">Street*</label>
-                <input type="text" class="form-control" id="Street" value="{{ $client['street'] }}" title="Street" name="street" placeholder="Enter Street" required>
+                <input type="text" class="form-control" id="Street" value="{{ $client['street'] }}" title="Street" name="street" placeholder="Enter Street">
                   </div>
               <div class="form-group">
                   <label for="City">City*</label>
@@ -42,11 +42,11 @@
                     </div>
                 <div class="form-group">
                     <label for="Tin">Tin*</label>
-                    <input type="text" class="form-control" id="Tin" value="{{ $client['tin'] }}"title="Street" name="tin" placeholder="Enter Tin" required>
+                    <input type="text" class="form-control" id="Tin" value="{{ $client['tin'] }}"title="Street" name="tin" placeholder="Enter Tin" >
                       </div>
                   <div class="form-group">
                       <label for="Phone1">Phone1*</label>
-                      <input type="text" class="form-control" id="Phone1" value="{{ $client['phone1'] }}"title="Phone1" name="phone1" placeholder="Enter Phone1" required>
+                      <input type="text" class="form-control" id="Phone1" value="{{ $client['phone1'] }}"title="Phone1" name="phone1" placeholder="Enter Phone1" >
                         </div>
                   <div class="form-group">
                         <label for="Phone2">Phone2*</label>

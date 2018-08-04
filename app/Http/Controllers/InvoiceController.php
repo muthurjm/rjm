@@ -88,6 +88,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        // return $_POST;
         $input = $request->all();
         $validator = Validator::make($input, [
              'invoice_number' => 'bail|required|unique:invoices',

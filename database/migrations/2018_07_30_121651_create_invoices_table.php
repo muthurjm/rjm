@@ -18,12 +18,11 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_number');
             $table->date('invoice_date');
             $table->string('client_code');
-            // $table->foreign('client_code')->references('id')->on('client');
             $table->string('name');
             $table->string('street')->nullable();
             $table->string('city'); 
             $table->string('tin')->nullable();
-            $table->bigInteger('phone');
+            $table->bigInteger('phone')->nullable();
             $table->string('sub_total');
             $table->string('cgst_6');
             $table->string('cgst_9');

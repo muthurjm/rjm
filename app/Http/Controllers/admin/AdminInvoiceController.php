@@ -96,8 +96,19 @@ class AdminInvoiceController extends Controller
      */
     public function destroy($id)
     {
-        $hsn = Invoices::find($id);
-        if($hsn->delete()){
+        // return "d";
+        $invoice = Invoices::find($id);
+        $invoicepurchases = InvoicesPurchase::all();
+        // $invoice->stock;
+        foreach($invoicepurchases as $invoicepurchase){
+            if($invoice->id == $invoicepurchase->invoice_id){
+                $product = Product::find($invoicepurchase->product_code);
+                Product::where('id',$invoicepurchase->product_code)->update(array(
+                    'stock' =>  $product->stock + $invoicepurchase->quantity,
+                ));
+            }
+        }
+        if($invoice->delete()){
             return back()->with("success","Deleted Sucessfully");
         }
     }

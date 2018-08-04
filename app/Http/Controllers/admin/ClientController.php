@@ -17,7 +17,6 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::orderBy('id', 'DESC')->get();
-        // $clients  =array_reverse($clients,true);
         return view('admin/client/index',compact('clients'));
     }
 
@@ -48,7 +47,7 @@ class ClientController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'name' => 'required|unique:client',
+            'name' => 'required',
             'street' => 'nullable',
             'city' => 'required',
             'tin' => 'nullable|unique:client',
