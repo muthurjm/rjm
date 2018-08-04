@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="col-md-2">
-        <a href="{{ url('login') }}" ><button  style="width:100px;height:50px;" class="btn btn-primary">Login</button></a>
+        <a target="_blank" href="{{ url('login') }}" ><button  style="width:100px;height:50px;" class="btn btn-primary">Login</button></a>
         </div>
       </div>
     </div>
@@ -192,9 +192,6 @@
                 <div class="col-md-1">
                   <label>MRP*</label>
                 </div>
-                {{-- <div class="col-md-2">
-                    <label>Product Name*</label>
-                  </div> --}}
                 <div class="col-md-1">
                   <label>Quantity*</label>
                 </div>
@@ -324,11 +321,11 @@
      gst18 = gst18*0.18;
      gst28 = gst12*0.28;
     var grandtotal = parseFloat(subtotal+gst18+gst12+gst28);
-     $(".total").append(subtotal);
-     $(".gst12").append(gst12);
-     $(".gst18").append(gst18);
-     $(".gst28").append(gst28);
-     $(".grandtotal").append(parseFloat(grandtotal));
+     $(".total").append(subtotal.toFixed(3));
+     $(".gst12").append(gst12.toFixed(3));
+     $(".gst18").append(gst18.toFixed(3));
+     $(".gst28").append(gst28.toFixed(3));
+     $(".grandtotal").append(parseFloat(grandtotal.toFixed(3)));
     //  alert(subtotal);
     //  alert(gst12);
     //  alert(gst18);
@@ -403,10 +400,29 @@
 })
     });
     $(".product_code").change(function(){
-          var id= $(this).val();
-          var card= $(this).attr('data');
-          $(".quantity"+card).removeAttr('disabled');
-          // $(".price"+card).removeAttr('disabled');
+      var id= $(this).val();
+      var card= $(this).attr('data');
+      $(".quantity"+card).removeAttr('disabled');
+      for(i= 0;i<=20;i++){
+        if(i != card){
+            if($('.product_code'+i).val() == id) {
+                alert('Product is already selected');
+                $(".quantity"+card).addClass("border_alert");
+                $(".product_code"+card).addClass("border_alert");
+                $(".hsn"+card).addClass("border_alert");
+                $(".mrp"+card).addClass("border_alert");
+                $(".product"+card).addClass("border_alert");
+                $(".amount"+card).addClass("border_alert");
+                $(".tax"+card).addClass("border_alert");
+                $(".math"+card).addClass("border_alert");
+                $(".price"+card).addClass("border_alert");
+                $(".quantity"+card).attr('disabled','disabled');
+                $("#submit_btn").attr('disabled','disabled');
+                $("#cal").attr('disabled','disabled');
+                return false;
+          }
+        }
+      }
           $.ajax({
     url: "/invoice/ajax2/",
     type: "POST",
@@ -466,7 +482,6 @@
           $("#cal").attr('disabled','disabled');
           $(".price"+card).append("");
           $(".amount"+card).append("");
-          $(".price"+card).attr('disabled','disabled');
           $(".product_code").attr('disabled','disabled');
         }else{
           $(".math"+card).removeAttr('disabled');
@@ -485,7 +500,7 @@
           var price= $(".price"+card).val();
           var amount = parseFloat(price * quantity);
           $(".amount"+card).empty();
-          $(".amount"+card).append(amount);
+          $(".amount"+card).append(amount.toFixed(3));
         }
     }
 })

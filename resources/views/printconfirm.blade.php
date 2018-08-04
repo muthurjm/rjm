@@ -214,7 +214,7 @@ table{
 										</thead>
 										<tbody>
 											  <?php $i=1 ?> @foreach($invoicepurchases as $invoicepurchase)
-											  <?php if($invoicepurchase->invoice_id <= $invoice->id){ ?>
+											  <?php if($invoicepurchase->invoice_id == $invoice->id){ ?>
 											<tr>
 												  <td class="text-center">{{ $i }}</td>
 												<td class="text-center">{{ $invoicepurchase['product_name'] }}</td>

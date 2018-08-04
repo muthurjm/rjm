@@ -79,7 +79,7 @@ class PurchaseController extends Controller
         ));
         }
     }
-            return back()->with("success","Stock Added Sucessfully");
+            return back()->with("success","Purchase Added Sucessfully");
     }
 
     /**
