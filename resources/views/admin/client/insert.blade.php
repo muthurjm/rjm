@@ -55,7 +55,7 @@
                   <input type="text" class="form-control" id="City" title="City" name="city" placeholder="Enter City" required>
                     </div>
                 <div class="form-group">
-                    <label for="Tin">Tin</label>
+                    <label for="Tin">GST</label>
                     <input type="text" class="form-control" id="Tin" title="Street" name="tin" placeholder="Enter Tin" >
                       </div>
                   <div class="form-group">

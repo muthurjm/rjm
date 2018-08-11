@@ -55,8 +55,8 @@
                                         </div>
                                         <div class="col-md-3">
                                     <div class="form-group">
-                                      <label for="sgst">TIN No*</label>
-                                      <input readonly type="text" class="form-control" value="{{ $invoice['tin'] }}"  id="sgst" title="TIN No" name="sgst" placeholder="TIN number not found" required>
+                                      <label for="sgst">GST No*</label>
+                                      <input readonly type="text" class="form-control" value="{{ $invoice['tin'] }}"  id="sgst" title="TIN No" name="sgst" placeholder="GST number not found" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

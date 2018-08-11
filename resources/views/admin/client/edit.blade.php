@@ -41,7 +41,7 @@
                   <input type="text" class="form-control" id="City" value="{{ $client['city'] }}" title="City" name="city" placeholder="Enter City" required>
                     </div>
                 <div class="form-group">
-                    <label for="Tin">Tin*</label>
+                    <label for="Tin">GST*</label>
                     <input type="text" class="form-control" id="Tin" value="{{ $client['tin'] }}"title="Street" name="tin" placeholder="Enter Tin" >
                       </div>
                   <div class="form-group">

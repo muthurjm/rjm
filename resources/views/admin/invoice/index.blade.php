@@ -43,7 +43,7 @@
                   <th>Invoices No</th>
                   <th> Date</th>
                   <th>Client Name</th>
-                  <th>Tin No</th>
+                  <th>GST No</th>
                   <th>Phone Number</th>
                   <th>Count</th>
                   <th>Sub Total</th>
