@@ -50,7 +50,7 @@
                   <th>Name</th>
                   <th>Street</th>
                   <th>City</th>
-                  <th>TIN No</th>
+                  <th>GST No</th>
                   <th>Phone </th>
                   <th>Phone </th>
                   {{--
@@ -62,13 +62,13 @@
                 <?php $i=1 ?> @foreach($clients as $client)
                 <tr>
                   <td>{{ $i }}</td>
-                  <td>{{ $client['client_no'] }}</td>
-                  <td>{{ $client['name'] }}</td>
-                  <td>{{ $client['street'] }}</td>
-                  <td>{{ $client['city'] }}</td>
-                  <td>{{ $client['tin'] }}</td>
-                  <td>{{ $client['phone1'] }}</td>
-                  <td>{{ $client['phone2'] }}</td>
+                  <td><?php if($client['client_no'] == null){ echo "Nil"; } else{ echo $client['client_no'];  } ?></td>
+                  <td><?php if($client['name'] == null){ echo "Nil"; } else{ echo $client['name'];  } ?></td>
+                  <td><?php if($client['street'] == null){ echo "Nil"; } else{ echo $client['street'];  } ?></td>
+                  <td><?php if($client['city'] == null){ echo "Nil"; } else{ echo $client['city'];  } ?></td>
+                  <td><?php if($client['tin'] == null){ echo "Nil"; } else{ echo $client['tin'];  } ?></td>
+                  <td><?php if($client['phone1'] == null){ echo "Nil"; } else{ echo $client['phone1'];  } ?></td>
+                  <td><?php if($client['phone2'] == null){ echo "Nil"; } else{ echo $client['phone2'];  } ?></td>
                   <td>
                     <form action="{{action('admin\ClientController@destroy', $client['id'])}}" method="post">
                       @csrf

@@ -126,7 +126,7 @@
                   </div>
                   <div class="col-md-4">
                 <div class="form-group">
-                    <label for="tin">Tin Number*</label>
+                    <label for="tin">GST Number*</label>
                     <textarea readonly class="form-control tin" id="tin" title="Street" placeholder="Select Client" required></textarea>
                     <textarea class="hide form-control tin" name="tin"></textarea>
                       </div>
@@ -184,6 +184,15 @@
             <hr>
             <div class="row">
               <div class="col-md-4">
+                  <div class="form-group">
+                      <label>Tax</label>
+                    <input type="text" class="form-control math math"id="math" title="Tax" placeholder="Enter Percentage">
+                  </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4">
                  <label><b>Product Code*</b></label>
               </div>
               <div class="col-md-1">
@@ -195,10 +204,7 @@
                 <div class="col-md-1">
                   <label>Quantity*</label>
                 </div>
-                <div class="col-md-1">
-                  <label>Tax*</label>
-                </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <label>Price*</label>
                   </div>
                 <div class="col-md-1">
@@ -243,13 +249,7 @@
                                   <input type="text" disabled class="form-control quantity quantity{{ $i }}" data="{{ $i }}" id="quantity{{ $i }}" name="quantity[{{ $i }}]" title="Quantity" >
                                     </div>
                           </div>
-                          
-                          <div class="col-md-1">
-                              <div class="form-group">
-                              <input type="text" disabled class="form-control math math{{ $i }}" data="{{ $i }}" id="math{{ $i }}" title="Tax">
-                                    </div>
-                          </div>
-                          <div class="col-md-1">
+                          <div class="col-md-2">
                               <div class="form-group">
                                   <textarea readonly class="form-control price{{ $i }}" id="price{{ $i }}" title="Price"></textarea>
                                   <textarea class="hide form-control price{{ $i }}" name="price[{{ $i }}]"></textarea>
@@ -318,19 +318,15 @@
        } 
      }
      gst12 = gst12*0.12;
+     alert(gst12);
      gst18 = gst18*0.18;
-     gst28 = gst12*0.28;
+     gst28 = gst28*0.28;
     var grandtotal = parseFloat(subtotal+gst18+gst12+gst28);
-     $(".total").append(subtotal.toFixed(3));
-     $(".gst12").append(gst12.toFixed(3));
-     $(".gst18").append(gst18.toFixed(3));
-     $(".gst28").append(gst28.toFixed(3));
-     $(".grandtotal").append(parseFloat(grandtotal.toFixed(3)));
-    //  alert(subtotal);
-    //  alert(gst12);
-    //  alert(gst18);
-    //  alert(gst28);
-    //  alert(grandtotal);
+     $(".total").append(subtotal.toFixed(0));
+     $(".gst12").append(gst12.toFixed(0));
+     $(".gst18").append(gst18.toFixed(0));
+     $(".gst28").append(gst28.toFixed(0));
+     $(".grandtotal").append(parseFloat(grandtotal.toFixed(0)));
   });
   $("#submit_btn").click(function(){
       if(!$('#city').val() || !$('#street').val()|| !$('#name').val()) {
@@ -347,7 +343,7 @@
         }
         for(i= 1;i<=20;i++){
             if($('#product_code'+i).val()) {
-              if(!$('#quantity'+i).val() || !$('#price'+i).val() || !$('#math'+i).val()) {
+              if(!$('#quantity'+i).val() || !$('#price'+i).val()) {
                 alert('Enter Detail Correctly');
                 $(".quantity"+i).addClass("border_alert");
                 $(".tax"+i).addClass("border_alert");
@@ -355,7 +351,6 @@
                 $(".amount"+i).addClass("border_alert");
                 $(".price"+i).addClass("border_alert");
                 $(".hsn"+i).addClass("border_alert");
-                $(".math"+i).addClass("border_alert");
                 return false;
             }
           }
@@ -414,7 +409,6 @@
                 $(".product"+card).addClass("border_alert");
                 $(".amount"+card).addClass("border_alert");
                 $(".tax"+card).addClass("border_alert");
-                $(".math"+card).addClass("border_alert");
                 $(".price"+card).addClass("border_alert");
                 $(".quantity"+card).attr('disabled','disabled');
                 $("#submit_btn").attr('disabled','disabled');
@@ -443,20 +437,6 @@
         $(".product"+card).append(data['product_name']);
     },
 })
-    });
-      $(".math").keyup(function(){
-          var price;
-          var card= $(this).attr('data');
-          var quantity= $(".quantity"+card).val();
-          var mrp = $(".mrp"+card).val();
-          var math= $(".math"+card).val();
-          price = parseFloat(mrp * math/100);
-          price = mrp-price;
-          var amount = parseFloat(price * quantity);
-          $(".amount"+card).empty();
-          $(".price"+card).empty();
-          $(".amount"+card).append(amount);
-          $(".price"+card).append(price);
     });
     $(".quantity").keyup(function(){
       var card= $(this).attr('data');
@@ -497,10 +477,25 @@
           $("#submit_btn").removeAttr('disabled');
           $("#cal").removeAttr('disabled');
           $(".product_code").removeAttr('disabled');
-          var price= $(".price"+card).val();
+          var price;
+          var mrp = $(".mrp"+card).val();
+          var math= $(".math").val();
+          var gst= $(".tax"+card).val();
+          price = parseFloat(mrp * math/100);
+          price = mrp-price;
+          if(gst == 12){
+            price = price/1.12;
+       }else if(gst == 18){
+        price = price/1.18;
+       }
+       else if(gst == 28){
+        price = price/1.28;
+       } 
           var amount = parseFloat(price * quantity);
           $(".amount"+card).empty();
-          $(".amount"+card).append(amount.toFixed(3));
+          $(".price"+card).empty();
+          $(".price"+card).append(price.toFixed(0));
+          $(".amount"+card).append(amount.toFixed(0));
         }
     }
 })
