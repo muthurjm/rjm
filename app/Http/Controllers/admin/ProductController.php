@@ -24,7 +24,7 @@ class ProductController extends Controller
         //     $hsn = Hsn::find($hsn_id);
         //     $hsn_code = $hsn->hsn_code;
         //     $product['hsn_code'] = $hsn_code;
-        //     $tax = $hsn->tax;
+        //     $tax = $hsn->tax; 
         //     $product['tax'] = $tax;
         // }
         return view('admin/product/index',compact('products'));

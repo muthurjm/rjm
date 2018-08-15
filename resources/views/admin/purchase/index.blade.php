@@ -8,8 +8,6 @@
     width: 50%;
   }
 </style>
-
-
 @endpush 
 @section('content')
 <!-- Main content -->

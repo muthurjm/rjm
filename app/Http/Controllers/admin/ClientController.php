@@ -48,6 +48,7 @@ class ClientController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'required',
+            'category' => 'required',
             'street' => 'nullable',
             'city' => 'required',
             'tin' => 'nullable|unique:client',
@@ -73,6 +74,7 @@ class ClientController extends Controller
         $client->street = $request->street;
         $client->city = $request->city;
         $client->tin = $request->tin;
+        $client->category = $request->category;
         $client->phone1 = $request->phone1;
         $client->phone2 = $request->phone2; 
         if($client->save()){
@@ -117,6 +119,7 @@ class ClientController extends Controller
             'street' => $request->street,
             'city' => $request->city,
             'tin' => $request->tin,
+            'category' => $request->category,
             'phone1' => $request->phone1,
             'phone2' => $request->phone2,
         ));

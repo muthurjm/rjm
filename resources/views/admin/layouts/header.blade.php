@@ -1,6 +1,5 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
             <!-- Left navbar links -->
@@ -18,8 +17,7 @@
                         <ul class="dropdown-user user-header">
                             <p style="margin-left: 20px;">
                             </p>
-                            <a href="{{ url('logout') }}" class="btnpic btn-default">Sign out</a> {{-- <a action="{{ action('Admin/AuthController@logout') }}"
-                                class="btnpic btn-default">Sign out</a> --}}
+                            <a href="{{ url('logout') }}" class="btnpic btn-default">Sign out</a> 
                         </ul>
                     </div>
                 </li>
@@ -115,7 +113,15 @@
                                 Tax pay
                            </p>
                             </a>
-                                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/invoicereport') }}" id="taxpay" class="nav-link load">
+                <i class="nav-icon fa  fa-angle-right"></i>
+                  <p>
+                    Invoice Report
+               </p>
+                </a>
+                    </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
