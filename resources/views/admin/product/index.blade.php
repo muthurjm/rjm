@@ -89,8 +89,6 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-
 @stop @push('js')
 <script src="{{asset('website/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script>

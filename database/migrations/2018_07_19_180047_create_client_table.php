@@ -21,8 +21,9 @@ class CreateClientTable extends Migration
             $table->string('street')->nullable();
             $table->string('city');
             $table->string('tin')->nullable();
-            $table->bigInteger('phone1')->unique()->nullable();
-            $table->bigInteger('phone2')->unique()->nullable();
+            $table->bigInteger('phone1')->nullable();
+            $table->enum('category',['medical','gt']);
+            $table->bigInteger('phone2')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

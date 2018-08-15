@@ -99,9 +99,10 @@ class InvoiceController extends Controller
         $cgst_6 = $request->gst12/2;
         $cgst_9 = $request->gst18/2;
         $cgst_14 = $request->gst14/2;
+        $client_id = $request->client_code;
         $client = new Invoices();
         $client->invoice_number = $request->invoice_number;
-        $client->client_code = $request->client_code;
+        $client->client_code = $client_id;
         $client->street = $request->street;
         $client->name = $request->name;
         $client->city = $request->city;
@@ -112,17 +113,19 @@ class InvoiceController extends Controller
         $client->gst_18 = $request->gst18;
         $client->gst_12 = $request->gst12;
         $client->gst_28 = $request->gst28;
-        $client->cgst_6 = $cgst_6;
-        $client->cgst_9 = $cgst_9;
-        $client->cgst_14 = $cgst_14;
-        $client->sgst_6 = $cgst_6;
-        $client->sgst_9 =  $cgst_9;
-        $client->sgst_14 = $cgst_14;  
+        $client->cgst_6 = round($cgst_6,2);
+        $client->cgst_9 = round($cgst_9,2);
+        $client->cgst_14 =round($cgst_14,2);
+        $client->sgst_6 = round($cgst_6,2);
+        $client->sgst_9 = round($cgst_9,2);
+        $client->sgst_14 =round($cgst_14,2);
         $client->grand_total = $request->grandtotal;  
         $client->save();
         foreach($request->product_code as $keys => $sproduct_code){
             $purchaseproduct[$keys] = new InvoicesPurchase();
             if($sproduct_code != null &&  $request->quantity[$keys] != null){
+            $purchaseproduct[$keys]->client_id = $client_id;
+            $purchaseproduct[$keys]->date =  date("Y-m-d") ;
             $purchaseproduct[$keys]->invoice_id = $client->id;
             $purchaseproduct[$keys]->product_code = $sproduct_code;
             $purchaseproduct[$keys]->hsn = $request->hsn[$keys];

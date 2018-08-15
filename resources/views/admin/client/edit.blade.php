@@ -40,6 +40,13 @@
                   <label for="City">City*</label>
                   <input type="text" class="form-control" id="City" value="{{ $client['city'] }}" title="City" name="city" placeholder="Enter City" required>
                     </div>
+                    <div class="form-group">
+                      <label>Choose Category</label>
+                      <select name="category" class="form-control select2" style="width: 100%;">
+                        <option <?php if($product['category'] == "medical") { echo'selected="selected"';} ?> value="medical">Medical</option>
+                        <option <?php if($product['category'] == "gt") { echo 'selected="selected"';} ?> value="gt">GT</option>
+                      </select>
+                    </div>
                 <div class="form-group">
                     <label for="Tin">GST*</label>
                     <input type="text" class="form-control" id="Tin" value="{{ $client['tin'] }}"title="Street" name="tin" placeholder="Enter Tin" >

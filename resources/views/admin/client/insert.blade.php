@@ -54,6 +54,14 @@
                   <label for="City">City*</label>
                   <input type="text" class="form-control" id="City" title="City" name="city" placeholder="Enter City" required>
                     </div>
+                    <div class="form-group">
+                      <label>Choose Category</label>
+                      <select required name="category" class="form-control select2" style="width: 100%;">
+                        <option value="" selected="selected">Select Category</option>
+                        <option value="medical">Medical</option>
+                        <option value="gt">GT</option>
+                      </select>
+                    </div>
                 <div class="form-group">
                     <label for="Tin">GST</label>
                     <input type="text" class="form-control" id="Tin" title="Street" name="tin" placeholder="Enter Tin" >
@@ -80,13 +88,8 @@
   <!-- /.content-wrapper -->
 @stop
 @push("js")
-{{-- <script>
-$('#formid').on('keyup keypress', function(e) {
-  var keyCode = e.keyCode || e.which;
-  if (keyCode === 13) { 
-    e.preventDefault();
-    return false;
-  }
-});
-</script> --}}
+<script src="{{asset('website/plugins/select2/select2.full.min.js')}}"></script>
+<script>
+$('.select2').select2()
+</script>
 @endpush

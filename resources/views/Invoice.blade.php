@@ -138,7 +138,7 @@
                       <textarea class="hide form-control phone" name="phone"></textarea>
                         </div>
                       </div>
-            </div>
+            </div> 
             <hr>
             <div class="row">
                 <div class="col-md-2">
@@ -219,7 +219,7 @@
               <?php for($i=0;$i<=20;$i++){ ?>
                       <div class="col-md-4">
                           <div class="form-group">
-                          <select class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
+                          <select disabled class="form-control select2 product_code{{ $i }} product_code" data="{{ $i }}" id="product_code{{ $i }}" name="product_code[{{ $i }}]" id="product_code" style="width:100%;">
                                   <option value="" selected="selected">Select Product</option>
                                     @foreach($products as $product){
                                       <?php if($product->stock > 0) {?>
@@ -289,6 +289,14 @@
 <script src="{{asset('website/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script>
   $(document).ready(function(){
+    $("#math").keyup(function(){
+      if($("#math").val() == ""){
+        $(".product_code").attr('disabled','disabled');
+      }
+      else if(!$("#math").val() == ""){
+        $(".product_code").removeAttr('disabled');
+      }
+    });
     $("#cal").click(function(e){
       e.preventDefault(); 
       $(".gst12").empty();
@@ -318,14 +326,13 @@
        } 
      }
      gst12 = gst12*0.12;
-     alert(gst12);
      gst18 = gst18*0.18;
      gst28 = gst28*0.28;
     var grandtotal = parseFloat(subtotal+gst18+gst12+gst28);
-     $(".total").append(subtotal.toFixed(0));
-     $(".gst12").append(gst12.toFixed(0));
-     $(".gst18").append(gst18.toFixed(0));
-     $(".gst28").append(gst28.toFixed(0));
+     $(".total").append(subtotal.toFixed(2));
+     $(".gst12").append(gst12.toFixed(2));
+     $(".gst18").append(gst18.toFixed(2));
+     $(".gst28").append(gst28.toFixed(2));
      $(".grandtotal").append(parseFloat(grandtotal.toFixed(0)));
   });
   $("#submit_btn").click(function(){
@@ -494,8 +501,8 @@
           var amount = parseFloat(price * quantity);
           $(".amount"+card).empty();
           $(".price"+card).empty();
-          $(".price"+card).append(price.toFixed(0));
-          $(".amount"+card).append(amount.toFixed(0));
+          $(".price"+card).append(price.toFixed(2));
+          $(".amount"+card).append(amount.toFixed(2));
         }
     }
 })
